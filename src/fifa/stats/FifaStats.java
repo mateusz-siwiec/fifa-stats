@@ -52,7 +52,7 @@ public class FifaStats extends Application {
         Scene scene = new Scene(hbox, 700, 700);
         primaryStage.setScene(scene);
         primaryStage.show();
-
+ 
         primaryStage.setTitle("FifaStats");
         primaryStage.show();
     }

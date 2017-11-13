@@ -23,7 +23,7 @@ public class FifaStats extends Application {
     }
 
     @Override
-
+ 
     public void start(Stage primaryStage) throws Exception {
 
         TextField gospodarzImie = new TextField("Podaj imię");

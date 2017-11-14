@@ -21,7 +21,7 @@ public class Druzyny {
 
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
-    }
+    } 
 
     public String getKraj() {
         return kraj;

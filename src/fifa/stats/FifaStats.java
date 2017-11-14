@@ -22,7 +22,7 @@ public class FifaStats extends Application {
         launch(args);
     }
 
-    @Override
+    @Override 
  
     public void start(Stage primaryStage) throws Exception {
 

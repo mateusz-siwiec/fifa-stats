@@ -27,7 +27,7 @@ public class Mecze {
 
     public void setGospodarzId(int gospodarzId) {
         this.gospodarzId = gospodarzId;
-    }
+    } 
 
     public int getGospodarzBramki() {
         return gospodarzBramki;

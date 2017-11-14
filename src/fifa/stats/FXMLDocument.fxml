@@ -6,9 +6,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fifa.stats.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="490.0" prefWidth="602.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fifa.stats.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TextField layoutX="33.0" layoutY="42.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie" />
+      <TextField layoutX="354.0" layoutY="42.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie" />
+      <TextField layoutX="33.0" layoutY="86.0" prefHeight="34.0" prefWidth="203.0" promptText="Nazwisko" />
+      <TextField layoutX="354.0" layoutY="86.0" prefHeight="34.0" prefWidth="203.0" promptText="Nazwisko" />
+      <TextField layoutX="33.0" layoutY="195.0" prefHeight="34.0" prefWidth="161.0" promptText="Druzyna" />
+      <TextField layoutX="385.0" layoutY="194.0" prefHeight="31.0" prefWidth="172.0" promptText="Druzyna" />
+      <TextField layoutX="236.0" layoutY="194.0" prefHeight="0.0" prefWidth="32.0" />
+      <TextField layoutX="313.0" layoutY="194.0" prefHeight="21.0" prefWidth="32.0" />
+      <Label layoutX="67.0" layoutY="14.0" prefHeight="21.0" prefWidth="106.0" text="Gospodarz" />
+      <Label layoutX="417.0" layoutY="14.0" prefHeight="21.0" prefWidth="106.0" text="Gość" />
+      <Label layoutX="286.0" layoutY="199.0" text=":" />
     </children>
 </AnchorPane>

@@ -42,6 +42,6 @@ public class Druzyny {
     @Override
     public String toString() {
         return "Druzyny{" + "id=" + id + ", nazwa=" + nazwa + ", kraj=" + kraj + ", liga=" + liga + '}';
-    }
+    } 
     
 }

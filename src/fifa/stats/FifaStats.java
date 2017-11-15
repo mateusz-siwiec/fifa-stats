@@ -29,7 +29,7 @@ public class FifaStats extends Application {
  
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("interfejs.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);

@@ -76,4 +76,11 @@ public class Mecze {
     public void setCzasRozegrania(Date czasRozegrania) {
         this.czasRozegrania = czasRozegrania;
     }
+
+    @Override
+    public String toString() {
+        return "Mecze{" + "Id=" + Id + ", gospodarzId=" + gospodarzId + ", gospodarzBramki=" + gospodarzBramki + ", gospodarzDruzynaId=" + gospodarzDruzynaId + ", goscId=" + goscId + ", goscBramki=" + goscBramki + ", goscDruzynaId=" + goscDruzynaId + ", czasRozegrania=" + czasRozegrania + '}';
+    }
+    
+    
 }

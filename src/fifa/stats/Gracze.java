@@ -29,6 +29,11 @@ public class Gracze {
     public void setNazwisko(String nazwisko) {
         this.nazwisko = nazwisko;
     }
+
+    @Override
+    public String toString() {
+        return "Gracze{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + '}';
+    }
     
     
 }

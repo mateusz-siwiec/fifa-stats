@@ -38,4 +38,10 @@ public class Druzyny {
     public void setLiga(String liga) {
         this.liga = liga;
     }
+
+    @Override
+    public String toString() {
+        return "Druzyny{" + "id=" + id + ", nazwa=" + nazwa + ", kraj=" + kraj + ", liga=" + liga + '}';
+    }
+    
 }

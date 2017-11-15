@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fifa.stats;
 
 import java.net.URL;
@@ -11,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -20,11 +17,15 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
+    @FXML 
+    private TextField tfGospodarzImie,tfGoscImie,tfGospodarzNazwisko,tfGoscNazwisko,tfGospodarzDruzyna,tfGoscDruzyna,tfGospodarzBramki,tfGoscBramki;
+    
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void dodajWynik(ActionEvent event) {
+        System.out.println(tfGospodarzImie.getText()+tfGospodarzNazwisko.getText()+tfGospodarzDruzyna.getText()+tfGospodarzBramki.getText()+ " " + "  :  "+ tfGoscBramki.getText()
+        + tfGoscDruzyna.getText() + tfGoscImie.getText()+ tfGoscNazwisko.getText());
+        
     }
     
     @Override

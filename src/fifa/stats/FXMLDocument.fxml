@@ -7,20 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fifa.stats.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fifa.stats.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField layoutX="33.0" layoutY="237.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie" style="-fx-background-color: #FFE4C4;" />
-      <TextField layoutX="519.0" layoutY="237.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie" style="-fx-background-color: FFE4C4;" />
-      <TextField layoutX="33.0" layoutY="309.0" prefHeight="34.0" prefWidth="203.0" promptText="Nazwisko" />
-      <TextField layoutX="519.0" layoutY="309.0" prefHeight="34.0" prefWidth="203.0" promptText="Nazwisko" />
-      <TextField layoutX="33.0" layoutY="395.0" prefHeight="34.0" prefWidth="203.0" promptText="Druzyna" />
-      <TextField layoutX="519.0" layoutY="397.0" prefHeight="31.0" prefWidth="203.0" promptText="Druzyna" />
-      <TextField layoutX="296.0" layoutY="397.0" prefHeight="0.0" prefWidth="32.0" />
-      <TextField layoutX="432.0" layoutY="397.0" prefHeight="21.0" prefWidth="32.0" />
-      <Label layoutX="97.0" layoutY="193.0" prefHeight="21.0" prefWidth="88.0" text="Gospodarz" />
+      <TextField fx:id="tfGospodarzImie" layoutX="33.0" layoutY="237.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie"  style="-fx-background-color: #FFE4C4;" />
+      <TextField fx:id="tfGoscImie" layoutX="519.0" layoutY="237.0" prefHeight="34.0" prefWidth="203.0" promptText="Imie" style="-fx-background-color: FFE4C4;" />
+      <TextField fx:id="tfGospodarzNazwisko" layoutX="33.0" layoutY="309.0" prefHeight="34.0" prefWidth="203.0"  promptText="Nazwisko" />
+      <TextField fx:id="tfGoscNazwisko" layoutX="519.0" layoutY="309.0" prefHeight="34.0" prefWidth="203.0"  promptText="Nazwisko" />
+      <TextField fx:id="tfGospodarzDruzyna" layoutX="33.0" layoutY="395.0" prefHeight="34.0" prefWidth="203.0"  promptText="Druzyna" />
+      <TextField fx:id="tfGoscDruzyna" layoutX="519.0" layoutY="397.0" prefHeight="31.0" prefWidth="203.0"  promptText="Druzyna" />
+      <TextField fx:id="tfGospodarzBramki" layoutX="296.0" layoutY="397.0" prefHeight="0.0" prefWidth="32.0"  />
+      <TextField fx:id="tfGoscBramki" layoutX="432.0" layoutY="397.0" prefHeight="21.0" prefWidth="32.0" />
+      <Label layoutX="97.0" layoutY="193.0" prefHeight="21.0" prefWidth="88.0" text="Gospodarz"  />
       <Label layoutX="601.0" layoutY="193.0" prefHeight="21.0" prefWidth="40.0" text="Gość" />
       <Label layoutX="378.0" layoutY="402.0" text=":" />
-      <Button layoutX="328.0" layoutY="486.0" mnemonicParsing="false" style="-fx-background-color: #32CD32; -fx-border-color: #006400;" text="Dodaj wynik" textAlignment="CENTER" />
+      <Button fx:id="dodajWynik" layoutX="328.0" layoutY="486.0" mnemonicParsing="false" style="-fx-background-color: #32CD32; -fx-border-color: #006400;" text="Dodaj wynik" textAlignment="CENTER" />
     </children>
 </AnchorPane>

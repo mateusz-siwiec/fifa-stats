@@ -7,7 +7,9 @@ package fifa.stats;
 
 
 public class WynikGracza {
-    private int graczId , druzynaId, liczbaBramek;
+    private int graczId;
+    private int druzynaId; 
+    private int liczbaBramek;
 
     public int getGraczId() {
         return graczId;

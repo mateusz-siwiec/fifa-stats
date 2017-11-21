@@ -34,6 +34,11 @@ public class Gracze {
     public String toString() {
         return "Gracze{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + '}';
     }
+
+    public Gracze(String imie, String nazwisko) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+    }
     
     
 }

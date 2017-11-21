@@ -45,10 +45,14 @@ public class Mecze {
     public String toString() {
         return "Mecze{" + "id=" + id + ", wynikGospodarza=" + wynikGospodarza + ", wynikGoscia=" + wynikGoscia + ", czasRozegrania=" + czasRozegrania + '}';
     }
+
+    public Mecze( WynikGracza wynikGospodarza, WynikGracza wynikGoscia, Date czasRozegrania) {
+     
+        this.wynikGospodarza = wynikGospodarza;
+        this.wynikGoscia = wynikGoscia;
+        this.czasRozegrania = czasRozegrania;
+    }
     
   
-    
-    
-    
     
 }

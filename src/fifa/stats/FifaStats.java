@@ -35,6 +35,8 @@ public class FifaStats extends Application {
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
+        
     }
+
 
 }

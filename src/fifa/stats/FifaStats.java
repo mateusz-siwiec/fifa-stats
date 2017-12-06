@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class FifaStats extends Application {
+    
+    public double xOffset = 0;
+    public double yOffset = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -28,9 +32,26 @@ public class FifaStats extends Application {
     @Override 
  
     public void start(Stage stage) throws Exception {
-
+        
+       
         Parent root = FXMLLoader.load(getClass().getResource("interfejs1.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
+        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+        @Override
+        public void handle(MouseEvent event){
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+        }
+        });
+        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+        @Override
+        public void handle(MouseEvent event){
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+                }
+        });
+        
         Scene scene = new Scene(root);
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
         stage.setScene(scene);

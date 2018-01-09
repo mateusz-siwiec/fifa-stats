@@ -20,23 +20,22 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML 
-    private TextField tfGospodarzImie;
+    private TextField tfHostName;
     @FXML
-    private TextField tfGoscImie;
+    private TextField tfGuestName;
     @FXML
-    private TextField tfGospodarzNazwisko;
+    private TextField tfHostSurname;
     @FXML
-    private TextField tfGoscNazwisko;
+    private TextField tfGuestSurname;
     @FXML
-    private TextField tfGospodarzDruzyna;
+    private TextField tfHostTeam;
     @FXML
-    private TextField tfGoscDruzyna;
+    private TextField tfGuestTeam;
     @FXML
-    private TextField tfGospodarzBramki;
+    private TextField tfHostGoals;
     @FXML
-    private TextField tfGoscBramki;
-    @FXML 
-    private Date today = new Date();
+    private TextField tfGuestGoals;
+   
     
     @FXML
     private ImageView btn_home;
@@ -53,23 +52,23 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML
-    private void dodajWynik(ActionEvent event) {
+    private void addResult(ActionEvent event) {
         
              
-        System.out.println("|"+tfGospodarzImie.getText()+" "+tfGospodarzNazwisko.getText()+"|"+" "+tfGospodarzDruzyna.getText()+" "+tfGospodarzBramki.getText()+ " " + "  :  "+ " "+ tfGoscBramki.getText()
-               + " " +tfGoscDruzyna.getText()+ " " + "|" +tfGoscImie.getText()+" "+ tfGoscNazwisko.getText()+"|");
+        System.out.println("|"+tfHostName.getText()+" "+tfHostSurname.getText()+"|"+" "+tfHostTeam.getText()+" "+tfHostGoals.getText()+ " " + "  :  "+ " "+ tfGuestGoals.getText()
+               + " " +tfGuestTeam.getText()+ " " + "|" +tfGuestName.getText()+" "+ tfGuestSurname.getText()+"|");
         
         
        
-        Druzyna druzynaGospodarz = new Druzyna(tfGospodarzDruzyna.getText());
-        Druzyna druzynaGosc = new Druzyna(tfGoscDruzyna.getText());
-        Gracz gospodarz = new Gracz(tfGospodarzImie.getText() , tfGospodarzNazwisko.getText());
-        Gracz gosc = new Gracz(tfGoscImie.getText() , tfGoscNazwisko.getText());
+        Team hostTeam = new Team(tfHostTeam.getText());
+        Team guestTeam = new Team(tfGuestTeam.getText());
+        Player host = new Player(tfHostName.getText() , tfHostSurname.getText());
+        Player guest = new Player(tfGuestName.getText() , tfGuestSurname.getText());
         Date today = new Date();
-        WynikGracza wynikGospodarza =  new WynikGracza(gospodarz , druzynaGospodarz , Integer.parseInt(tfGospodarzBramki.getText()));
-        WynikGracza wynikGoscia = new WynikGracza( gosc , druzynaGosc , Integer.parseInt(tfGoscBramki.getText()));
+        PlayerResult hostResult =  new PlayerResult(host , hostTeam , Integer.parseInt(tfHostGoals.getText()));
+        PlayerResult guestResult = new PlayerResult( guest , guestTeam , Integer.parseInt(tfGuestGoals.getText()));
         
-        Mecz wynikMeczu = new Mecz(wynikGospodarza, wynikGoscia , today);
+        Match matchResult = new Match(hostResult, guestResult , today);
     }
 
    

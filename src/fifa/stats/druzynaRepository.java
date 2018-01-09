@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fifa.stats;
 
-/**
- *
- * @author Mateusz
- */
 public class druzynaRepository {
-    public void insert(Druzyna druzyna){
+    public void insert(Team druzyna){
         System.out.println(druzyna.toString());
     }
 }

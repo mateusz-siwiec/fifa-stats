@@ -9,7 +9,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fifa.stats.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="topbar" prefHeight="89.0" prefWidth="591.0" style="-fx-background-color: #333399;">
@@ -48,19 +47,6 @@
             <Button layoutX="356.0" layoutY="352.0" mnemonicParsing="false" text="Edytuj wynik" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="h_home" layoutX="1.0" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
-         <children>
-            <TextField fx:id="tfGospodarzImie" layoutX="57.0" layoutY="42.0" promptText="Imie" />
-            <TextField fx:id="tfGospodarzNazwisko" layoutX="57.0" layoutY="81.0" promptText="Nazwisko" />
-            <TextField fx:id="tfGoscImie" layoutX="361.0" layoutY="42.0" promptText="Imie" />
-            <TextField fx:id="tfGoscNazwisko" layoutX="361.0" layoutY="81.0" promptText="Nazwisko" />
-            <TextField fx:id="tfGospodarzDruzyna" layoutX="57.0" layoutY="167.0" promptText="Drużyna" />
-            <TextField fx:id="tfGoscDruzyna" layoutX="361.0" layoutY="167.0" promptText="Drużyna" />
-            <TextField fx:id="tfGospodarzBramki" layoutX="233.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <TextField fx:id="tfGoscBramki" layoutX="311.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <Button fx:id="dodajWynik" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#dodajWynik" text="Dodaj wynik" />
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="h_user" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
          <children>
             <TextField layoutX="81.0" layoutY="57.0" promptText="Imie" />
@@ -73,6 +59,19 @@
                </opaqueInsets>
             </ListView>
             <Button layoutX="134.0" layoutY="315.0" mnemonicParsing="false" text="Usuń" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_home" layoutX="1.0" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
+         <children>
+            <TextField fx:id="tfHostName" layoutX="57.0" layoutY="42.0" promptText="Imie" />
+            <TextField fx:id="tfHostSurname" layoutX="57.0" layoutY="81.0" promptText="Nazwisko" />
+            <TextField fx:id="tfGuestName" layoutX="361.0" layoutY="42.0" promptText="Imie" />
+            <TextField fx:id="tfGuestSurname" layoutX="361.0" layoutY="81.0" promptText="Nazwisko" />
+            <TextField fx:id="tfHostTeam" layoutX="57.0" layoutY="167.0" promptText="Drużyna" />
+            <TextField fx:id="tfGuestTeam" layoutX="361.0" layoutY="167.0" promptText="Drużyna" />
+            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
+            <TextField fx:id="tfGuestGoals" layoutX="311.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
+            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
          </children>
       </AnchorPane>
    </children>

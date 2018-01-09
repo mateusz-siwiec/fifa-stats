@@ -1,4 +1,4 @@
-DROP TABLE gracze;
+
 
 CREATE TABLE gracze (
 id INT PRIMARY KEY,
@@ -6,7 +6,7 @@ imie VARCHAR(30),
 nazwisko VARCHAR(30)
 );
 
-DROP TABLE druzyny;
+
 
 CREATE TABLE druzyny (
 id INT PRIMARY KEY,
@@ -15,7 +15,7 @@ kraj VARCHAR(30),
 liga VARCHAR(30)
 );
 
-DROP TABLE mecze;
+
 
 CREATE TABLE mecze (
 id INT PRIMARY KEY,

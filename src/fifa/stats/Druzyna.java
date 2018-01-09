@@ -9,6 +9,8 @@ public class Druzyna {
     private String kraj;
     private String liga;
 
+    
+
   
 
     public int getId() {

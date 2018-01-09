@@ -3,24 +3,29 @@ package fifa.stats;
 
 
 public class WynikGracza {
-    private int graczId;
-    private int druzynaId; 
+    private Gracz gracz;
+    private Druzyna druzyna; 
     private int liczbaBramek;
 
-    public int getGraczId() {
-        return graczId;
+    @Override
+    public String toString() {
+        return "WynikGracza{" + "gracz=" + gracz + ", druzyna=" + druzyna + ", liczbaBramek=" + liczbaBramek + '}';
     }
 
-    public void setGraczId(int graczId) {
-        this.graczId = graczId;
+    public Gracz getGracz() {
+        return gracz;
     }
 
-    public int getDruzynaId() {
-        return druzynaId;
+    public void setGracz(Gracz gracz) {
+        this.gracz = gracz;
     }
 
-    public void setDruzynaId(int druzynaId) {
-        this.druzynaId = druzynaId;
+    public Druzyna getDruzyna() {
+        return druzyna;
+    }
+
+    public void setDruzyna(Druzyna druzyna) {
+        this.druzyna = druzyna;
     }
 
     public int getLiczbaBramek() {
@@ -31,10 +36,4 @@ public class WynikGracza {
         this.liczbaBramek = liczbaBramek;
     }
 
-    @Override
-    public String toString() {
-        return "WynikGracza{" + "graczId=" + graczId + ", druzynaId=" + druzynaId + ", liczbaBramek=" + liczbaBramek + '}';
-    }
-    
-    
 }

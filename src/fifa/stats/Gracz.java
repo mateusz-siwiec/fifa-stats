@@ -1,10 +1,12 @@
 package fifa.stats;
 
 
-public class Gracze {
+public class Gracz {
     private int id;
     private String imie;
     private String nazwisko;
+
+  
 
     public int getId() {
         return id;
@@ -35,7 +37,7 @@ public class Gracze {
         return "Gracze{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + '}';
     }
 
-    public Gracze(String imie, String nazwisko) {
+    public void Gracze(String imie, String nazwisko) {
         this.imie = imie;
         this.nazwisko = nazwisko;
     }

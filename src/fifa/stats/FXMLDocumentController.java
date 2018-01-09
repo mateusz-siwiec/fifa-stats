@@ -55,7 +55,11 @@ public class FXMLDocumentController implements Initializable {
              
         System.out.println("|"+tfGospodarzImie.getText()+" "+tfGospodarzNazwisko.getText()+"|"+" "+tfGospodarzDruzyna.getText()+" "+tfGospodarzBramki.getText()+ " " + "  :  "+ " "+ tfGoscBramki.getText()
                + " " +tfGoscDruzyna.getText()+ " " + "|" +tfGoscImie.getText()+" "+ tfGoscNazwisko.getText()+"|");
-        
+              
+        Druzyna druzynaGospodarz = new Druzyna(tfGospodarzDruzyna);
+        Druzyna druzynaGosc = new Druzyna();
+        Gracz gospodarz = new Gracz();
+        Gracz gosc = new Gracz();
        
    
     }

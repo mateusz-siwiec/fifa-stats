@@ -3,7 +3,7 @@ package fifa.stats;
 import java.util.Date;
 
 
-public class Mecze {
+public class Mecz {
     private int id;
     private WynikGracza wynikGospodarza;
     private WynikGracza wynikGoscia;
@@ -46,7 +46,7 @@ public class Mecze {
         return "Mecze{" + "id=" + id + ", wynikGospodarza=" + wynikGospodarza + ", wynikGoscia=" + wynikGoscia + ", czasRozegrania=" + czasRozegrania + '}';
     }
 
-    public Mecze( WynikGracza wynikGospodarza, WynikGracza wynikGoscia, Date czasRozegrania) {
+    public Mecz( WynikGracza wynikGospodarza, WynikGracza wynikGoscia, Date czasRozegrania) {
      
         this.wynikGospodarza = wynikGospodarza;
         this.wynikGoscia = wynikGoscia;

@@ -1,7 +1,7 @@
 
 package fifa.stats;
 
-public class druzynaRepository {
+public class teamRepository {
     public void insert(Team druzyna){
         System.out.println(druzyna.toString());
     }

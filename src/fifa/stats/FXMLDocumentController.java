@@ -4,6 +4,7 @@ package fifa.stats;
 
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField tfGospodarzBramki;
     @FXML
     private TextField tfGoscBramki;
+    @FXML 
+    private Date today = new Date();
     
     @FXML
     private ImageView btn_home;
@@ -55,14 +58,21 @@ public class FXMLDocumentController implements Initializable {
              
         System.out.println("|"+tfGospodarzImie.getText()+" "+tfGospodarzNazwisko.getText()+"|"+" "+tfGospodarzDruzyna.getText()+" "+tfGospodarzBramki.getText()+ " " + "  :  "+ " "+ tfGoscBramki.getText()
                + " " +tfGoscDruzyna.getText()+ " " + "|" +tfGoscImie.getText()+" "+ tfGoscNazwisko.getText()+"|");
-              
-        Druzyna druzynaGospodarz = new Druzyna(tfGospodarzDruzyna);
-        Druzyna druzynaGosc = new Druzyna();
-        Gracz gospodarz = new Gracz();
-        Gracz gosc = new Gracz();
+        
+        
        
-   
+        Druzyna druzynaGospodarz = new Druzyna(tfGospodarzDruzyna.getText());
+        Druzyna druzynaGosc = new Druzyna(tfGoscDruzyna.getText());
+        Gracz gospodarz = new Gracz(tfGospodarzImie.getText() , tfGospodarzNazwisko.getText());
+        Gracz gosc = new Gracz(tfGoscImie.getText() , tfGoscNazwisko.getText());
+        Date today = new Date();
+        WynikGracza wynikGospodarza =  new WynikGracza(gospodarz , druzynaGospodarz , Integer.parseInt(tfGospodarzBramki.getText()));
+        WynikGracza wynikGoscia = new WynikGracza( gosc , druzynaGosc , Integer.parseInt(tfGoscBramki.getText()));
+        
+        Mecz wynikMeczu = new Mecz(wynikGospodarza, wynikGoscia , today);
     }
+
+   
     @FXML
     private void handleButtonAction(MouseEvent event){
         if(event.getTarget()==btn_home){

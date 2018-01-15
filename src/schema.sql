@@ -1,37 +1,34 @@
+DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS players;
+DROP TABLE IF EXISTS teams;
 
-
-CREATE TABLE gracze (
-id INT PRIMARY KEY,
-imie VARCHAR(30),
-nazwisko VARCHAR(30)
+CREATE TABLE players (
+  id      INT PRIMARY KEY,
+  name    VARCHAR(32),
+  surname VARCHAR(64)
 );
 
-
-
-CREATE TABLE druzyny (
-id INT PRIMARY KEY,
-nazwa VARCHAR(30),
-kraj VARCHAR(30),
-liga VARCHAR(30)
+CREATE TABLE teams (
+  id      INT PRIMARY KEY,
+  name    VARCHAR(64),
+  country VARCHAR(64),
+  league  VARCHAR(64)
 );
 
+CREATE TABLE games (
+  id              INT PRIMARY KEY,
+  host_player_id  INT,
+  host_team_id    INT,
+  host_score      INT,
+  guest_player_id INT,
+  guest_team_id   INT,
+  guest_score     INT,
+  date            DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-
-CREATE TABLE mecze (
-id INT PRIMARY KEY,
-gospodarz_id INT,
-gospodarz_bramki INT,
-gospodarz_druzyna_id INT,
-gosc_id INT,
-gosc_bramki INT,   
-gosc_druzyna_id INT,
-czas_rozegrania DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-FOREIGN KEY (gospodarz_id) REFERENCES gracze(id),
-FOREIGN KEY (gosc_id) REFERENCES gracze(id),
-FOREIGN KEY (gospodarz_druzyna_id) REFERENCES druzyny(id),
-FOREIGN KEY (gosc_druzyna_id) REFERENCES druzyny(id)
-
+  FOREIGN KEY (host_player_id) REFERENCES players (id),
+  FOREIGN KEY (host_team_id) REFERENCES teams (id),
+  FOREIGN KEY (guest_player_id) REFERENCES players (id),
+  FOREIGN KEY (guest_team_id) REFERENCES teams (id)
 );
 
 

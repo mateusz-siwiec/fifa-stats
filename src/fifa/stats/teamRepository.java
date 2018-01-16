@@ -2,7 +2,7 @@
 package fifa.stats;
 
 public class teamRepository {
-    public void insert(Team druzyna){
-        System.out.println(druzyna.toString());
+    public void save(Match match){
+        System.out.println(match.toString());
     }
 }

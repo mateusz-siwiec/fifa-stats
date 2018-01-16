@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class Match {
-    private int id;
+    private Integer id;
     private PlayerResult hostResult;
     private PlayerResult guestResult;
     private Date DateOfTheMatch;
@@ -13,7 +13,7 @@ public class Match {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

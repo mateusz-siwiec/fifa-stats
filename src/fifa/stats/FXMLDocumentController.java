@@ -35,6 +35,10 @@ public class FXMLDocumentController implements Initializable {
     private TextField tfHostGoals;
     @FXML
     private TextField tfGuestGoals;
+    @FXML
+    private TextField tfName;
+    @FXML
+    private TextField tfSurname;
    
     
     @FXML
@@ -69,8 +73,18 @@ public class FXMLDocumentController implements Initializable {
         PlayerResult guestResult = new PlayerResult( guest , guestTeam , Integer.parseInt(tfGuestGoals.getText()));
         
         Match matchResult = new Match(hostResult, guestResult , today);
+        
+      
     }
-
+    
+    @FXML 
+    private void addPlayer(ActionEvent event){
+        
+        Player player = new Player(tfName.getText() , tfSurname.getText());
+        PlayerRepository playerRepo = new PlayerRepository();
+        Player insertedPlayer = playerRepo.insert(player);
+        System.out.println(insertedPlayer);
+    }
    
     @FXML
     private void handleButtonAction(MouseEvent event){

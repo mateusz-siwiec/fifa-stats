@@ -2,14 +2,12 @@ package fifa.stats;
 
 import javafx.scene.control.TextField;
 
-
-
-
 public class Team {
+
     private Integer id;
     private String teamName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -31,7 +29,7 @@ public class Team {
     }
 
     public Team(String teamName) {
-        
+
         this.teamName = teamName;
     }
 

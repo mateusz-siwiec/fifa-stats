@@ -7,13 +7,13 @@ package fifa.stats;
 
 import java.util.List;
 
-/**
- *
- * @author Mateusz
- */
 public interface PlayerRepo {
+
     List<Player> findAll();
-  Player findById(int playerId) ;
-  Player insert(Player player);
-  void removeById(int playerId);
+
+    Player findById(int playerId);
+
+    Player insert(Player player);
+
+    void removeById(int playerId);
 }

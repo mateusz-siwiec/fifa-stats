@@ -1,7 +1,7 @@
 package fifa.stats;
 
-
 public class Player {
+
     private Integer id;
     private String name;
     private String surname;
@@ -11,7 +11,7 @@ public class Player {
         return "Player{" + "id=" + id + ", name=" + name + ", surname=" + surname + '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -39,6 +39,5 @@ public class Player {
         this.name = name;
         this.surname = surname;
     }
-    
-    
+
 }

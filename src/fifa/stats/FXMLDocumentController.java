@@ -1,7 +1,4 @@
-
 package fifa.stats;
-
-
 
 import java.net.URL;
 import java.util.Date;
@@ -15,11 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-
 public class FXMLDocumentController implements Initializable {
-    
-    
-    @FXML 
+
+    @FXML
     private TextField tfHostName;
     @FXML
     private TextField tfGuestName;
@@ -39,76 +34,68 @@ public class FXMLDocumentController implements Initializable {
     private TextField tfName;
     @FXML
     private TextField tfSurname;
-   
-    
+
     @FXML
     private ImageView btn_home;
-     @FXML
+    @FXML
     private ImageView btn_user;
-     @FXML
+    @FXML
     private ImageView btn_results;
-     @FXML
-     private AnchorPane h_home;
-      @FXML
-     private AnchorPane h_user;
-       @FXML
-     private AnchorPane h_results;
-    
-    
+    @FXML
+    private AnchorPane h_home;
+    @FXML
+    private AnchorPane h_user;
+    @FXML
+    private AnchorPane h_results;
+
     @FXML
     private void addResult(ActionEvent event) {
-        
-             
-        System.out.println("|"+tfHostName.getText()+" "+tfHostSurname.getText()+"|"+" "+tfHostTeam.getText()+" "+tfHostGoals.getText()+ " " + "  :  "+ " "+ tfGuestGoals.getText()
-               + " " +tfGuestTeam.getText()+ " " + "|" +tfGuestName.getText()+" "+ tfGuestSurname.getText()+"|");
-        
-        
-       
+
+        System.out.println("|" + tfHostName.getText() + " " + tfHostSurname.getText() + "|" + " " + tfHostTeam.getText() + " " + tfHostGoals.getText() + " " + "  :  " + " " + tfGuestGoals.getText()
+                + " " + tfGuestTeam.getText() + " " + "|" + tfGuestName.getText() + " " + tfGuestSurname.getText() + "|");
+
         Team hostTeam = new Team(tfHostTeam.getText());
         Team guestTeam = new Team(tfGuestTeam.getText());
-        Player host = new Player(tfHostName.getText() , tfHostSurname.getText());
-        Player guest = new Player(tfGuestName.getText() , tfGuestSurname.getText());
+        Player host = new Player(tfHostName.getText(), tfHostSurname.getText());
+        Player guest = new Player(tfGuestName.getText(), tfGuestSurname.getText());
         Date today = new Date();
-        PlayerResult hostResult =  new PlayerResult(host , hostTeam , Integer.parseInt(tfHostGoals.getText()));
-        PlayerResult guestResult = new PlayerResult( guest , guestTeam , Integer.parseInt(tfGuestGoals.getText()));
-        
-        Match matchResult = new Match(hostResult, guestResult , today);
-        
-      
+        PlayerResult hostResult = new PlayerResult(host, hostTeam, Integer.parseInt(tfHostGoals.getText()));
+        PlayerResult guestResult = new PlayerResult(guest, guestTeam, Integer.parseInt(tfGuestGoals.getText()));
+
+        Match matchResult = new Match(hostResult, guestResult, today);
+
     }
-    
-    @FXML 
-    private void addPlayer(ActionEvent event){
-        
-        Player player = new Player(tfName.getText() , tfSurname.getText());
+
+   @FXML
+    private void addPlayer(ActionEvent event) {
+
+        Player player = new Player(tfName.getText(), tfSurname.getText());
         PlayerRepository playerRepo = new PlayerRepository();
         Player insertedPlayer = playerRepo.insert(player);
         System.out.println(insertedPlayer);
     }
-   
+
     @FXML
-    private void handleButtonAction(MouseEvent event){
-        if(event.getTarget()==btn_home){
+    private void handleButtonAction(MouseEvent event) {
+        if (event.getTarget() == btn_home) {
             h_home.setVisible(true);
-             h_user.setVisible(false);
-             h_results.setVisible(false);
-        }
-        else if(event.getTarget()==btn_user){
+            h_user.setVisible(false);
+            h_results.setVisible(false);
+        } else if (event.getTarget() == btn_user) {
             h_user.setVisible(true);
             h_home.setVisible(false);
             h_results.setVisible(false);
-        }
-        else if(event.getTarget()==btn_results){
+        } else if (event.getTarget() == btn_results) {
             h_results.setVisible(true);
             h_user.setVisible(false);
             h_home.setVisible(false);
         }
-             
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    }    
-    
+
+    }
+
 }

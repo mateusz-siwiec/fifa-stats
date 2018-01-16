@@ -3,20 +3,20 @@ DROP TABLE IF EXISTS players;
 DROP TABLE IF EXISTS teams;
 
 CREATE TABLE players (
-  id      INT PRIMARY KEY,
+  id      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name    VARCHAR(32),
   surname VARCHAR(64)
 );
 
 CREATE TABLE teams (
-  id      INT PRIMARY KEY,
+  id      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name    VARCHAR(64),
   country VARCHAR(64),
   league  VARCHAR(64)
 );
 
 CREATE TABLE games (
-  id              INT PRIMARY KEY,
+  id              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   host_player_id  INT,
   host_team_id    INT,
   host_score      INT,

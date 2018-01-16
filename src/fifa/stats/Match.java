@@ -2,14 +2,14 @@ package fifa.stats;
 
 import java.util.Date;
 
-
 public class Match {
+
     private Integer id;
     private PlayerResult hostResult;
     private PlayerResult guestResult;
     private Date DateOfTheMatch;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -47,15 +47,10 @@ public class Match {
     }
 
     public Match(PlayerResult hostResult, PlayerResult guestResult, Date DateOfTheMatch) {
-        
+
         this.hostResult = hostResult;
         this.guestResult = guestResult;
         this.DateOfTheMatch = DateOfTheMatch;
     }
 
-   
-
-   
-  
-    
 }

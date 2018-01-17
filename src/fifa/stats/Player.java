@@ -40,4 +40,10 @@ public class Player {
         this.surname = surname;
     }
 
+    public Player(Integer id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+    }
+
 }

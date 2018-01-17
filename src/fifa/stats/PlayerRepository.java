@@ -8,7 +8,9 @@ package fifa.stats;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -21,12 +23,68 @@ public class PlayerRepository implements PlayerRepo {
 
     @Override
     public List<Player> findAll() {
-        throw new NotImplementedException();
+
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        String findAllSQL = "SELECT * FROM PLAYERS";
+        List<Player> playerList = new ArrayList<Player>();
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(findAllSQL);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                Player player = new Player(id, name, surname);
+                playerList.add(player);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+        return playerList;
     }
 
     @Override
     public Player findById(int playerId) {
-        throw new NotImplementedException();
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        String findPlayerById = "SELECT FROM PLAYERS WHERE ID = playerId";
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(findPlayerById);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                Player player = new Player(name, surname);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+        return null;
     }
 
     @Override
@@ -43,7 +101,6 @@ public class PlayerRepository implements PlayerRepo {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
-           
             preparedStatement.setString(1, player.getName());
             preparedStatement.setString(2, player.getSurname());
 
@@ -75,7 +132,7 @@ public class PlayerRepository implements PlayerRepo {
 
     @Override
     public void removeById(int playerId) {
-        throw new NotImplementedException();
+
     }
 
     private static Connection getDBConnection() {

@@ -98,8 +98,9 @@
                   <TreeTableColumn prefWidth="79.0" text="Host team id" />
                   <TreeTableColumn prefWidth="66.0" text="Host Score" />
                   <TreeTableColumn prefWidth="93.0" text="Guest player id" />
-                  <TreeTableColumn prefWidth="104.0" text="Guest team id" />
-                  <TreeTableColumn prefWidth="125.0" text="date" />
+                  <TreeTableColumn prefWidth="87.0" text="Guest team id" />
+                  <TreeTableColumn prefWidth="86.0" text="Guest score" />
+                  <TreeTableColumn prefWidth="56.0" text="date" />
               </columns>
             </TreeTableView>
          </children>

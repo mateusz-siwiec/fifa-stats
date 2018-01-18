@@ -1,5 +1,6 @@
 package fifa.stats;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Match {
@@ -7,7 +8,7 @@ public class Match {
     private Integer id;
     private PlayerResult hostResult;
     private PlayerResult guestResult;
-    private Date DateOfTheMatch;
+    private LocalDate DateOfTheMatch;
 
     public Integer getId() {
         return id;
@@ -33,11 +34,11 @@ public class Match {
         this.guestResult = guestResult;
     }
 
-    public Date getDateOfTheMatch() {
+    public LocalDate getDateOfTheMatch() {
         return DateOfTheMatch;
     }
 
-    public void setDateOfTheMatch(Date DateOfTheMatch) {
+    public void setDateOfTheMatch(LocalDate DateOfTheMatch) {
         this.DateOfTheMatch = DateOfTheMatch;
     }
 
@@ -46,11 +47,12 @@ public class Match {
         return "Match{" + "id=" + id + ", hostResult=" + hostResult + ", guestResult=" + guestResult + ", DateOfTheMatch=" + DateOfTheMatch + '}';
     }
 
-    public Match(PlayerResult hostResult, PlayerResult guestResult, Date DateOfTheMatch) {
-
+    public Match(PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
         this.hostResult = hostResult;
         this.guestResult = guestResult;
         this.DateOfTheMatch = DateOfTheMatch;
     }
+
+    
 
 }

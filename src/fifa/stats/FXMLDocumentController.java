@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -78,7 +79,7 @@ public class FXMLDocumentController implements Initializable {
         PlayerResult hostResult = new PlayerResult(host, hostTeam, Integer.parseInt(tfHostGoals.getText()));
         PlayerResult guestResult = new PlayerResult(guest, guestTeam, Integer.parseInt(tfGuestGoals.getText()));
 
-        Match matchResult = new Match(hostResult, guestResult, today);
+        Match matchResult = new Match(hostResult, guestResult, LocalDate.now());
        
         
         

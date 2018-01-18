@@ -6,6 +6,7 @@
 package fifa.stats;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -43,13 +44,13 @@ public class GamesRepository implements GamesRepo {
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
             preparedStatement.setInt(1, match.getHostResult().getPlayer().getId());
-            preparedStatement.setInt(2,match.getHostResult().getTeam().getId());
-            preparedStatement.setInt(3,match.getHostResult().getNumberOfGoals());
-            preparedStatement.setInt(4,match.getGuestResult().getPlayer().getId());
-            preparedStatement.setInt(5,match.getGuestResult().getTeam().getId());
-            preparedStatement.setInt(6,match.getGuestResult().getNumberOfGoals());
-            preparedStatement.setInt(7, match.getDateOfTheMatch().getDate());
-            
+            preparedStatement.setInt(2, match.getHostResult().getTeam().getId());
+            preparedStatement.setInt(3, match.getHostResult().getNumberOfGoals());
+            preparedStatement.setInt(4, match.getGuestResult().getPlayer().getId());
+            preparedStatement.setInt(5, match.getGuestResult().getTeam().getId());
+            preparedStatement.setInt(6, match.getGuestResult().getNumberOfGoals());
+            preparedStatement.setDate(7, Date.valueOf(match.getDateOfTheMatch()));
+
             // execute insert SQL stetement
             preparedStatement.executeUpdate();
 

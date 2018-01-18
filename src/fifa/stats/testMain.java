@@ -12,10 +12,17 @@ import java.util.List;
  * @author Mateusz
  */
 public class testMain {
+
     public static void main(String[] args) {
+
+        new PlayerRepository().removeById(5);
+        
+        
         List<Player> allPlayers = new PlayerRepository().findAll();
-        for (Player player : allPlayers) {  
-  System.out.println(player);
-}
+        for (Player player : allPlayers) {
+            System.out.println(player);
+
+        }
     }
+
 }

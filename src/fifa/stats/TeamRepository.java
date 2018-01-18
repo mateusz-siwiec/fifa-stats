@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fifa.stats;
 
 import java.sql.Connection;
@@ -12,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class PlayerRepository implements PlayerRepo {
+public class TeamRepository implements TeamRepo{
+
+     
 
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/fifaStats";
@@ -22,22 +18,21 @@ public class PlayerRepository implements PlayerRepo {
     private static final String DB_PASSWORD = "";
 
     @Override
-    public List<Player> findAll() {
+    public List<Team> findAll() {
 
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
-        String findAllSQL = "SELECT * FROM PLAYERS";
-        List<Player> playerList = new ArrayList<Player>();
+        String findAllSQL = "SELECT * FROM TEAMS";
+        List<Team> teamList = new ArrayList<Team>();
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findAllSQL);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                Player player = new Player(id, name, surname);
-                playerList.add(player);
+                String name = rs.getString("name");               
+                Team team = new Team(id, name);
+                teamList.add(team);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -53,25 +48,24 @@ public class PlayerRepository implements PlayerRepo {
                 throw new RuntimeException(e.getMessage());
             }
         }
-        return playerList;
+        return teamList;
     }
 
     @Override
-    public Player findById(int playerId) {
+    public Team findById(int teamId) {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
-        String findPlayerById = "SELECT * FROM PLAYERS WHERE ID =" +playerId;
+        String findTeamById = "SELECT * FROM TEAMS WHERE ID =" +teamId;
         try {
             dbConnection = getDBConnection();
-            preparedStatement = dbConnection.prepareStatement(findPlayerById);
+            preparedStatement = dbConnection.prepareStatement(findTeamById);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                Player player = new Player(id, name, surname);
+                String name = rs.getString("name");          
+                Team team = new Team(id, name);
 
-                return player;
+                return team;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -92,26 +86,26 @@ public class PlayerRepository implements PlayerRepo {
     }
 
     @Override
-    public Player insert(Player player) {
+    public Team insert(Team team) {
 
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertTableSQL = "INSERT INTO PLAYERS"
-                + "(NAME, SURNAME) VALUES"
-                + "(?,?)";
+        String insertTableSQL = "INSERT INTO TEAMS"
+                + "(NAME) VALUES"
+                + "(?)";
 
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
-            preparedStatement.setString(1, player.getName());
-            preparedStatement.setString(2, player.getSurname());
+            preparedStatement.setString(1, team.getTeamName());
+            
 
             // execute insert SQL stetement
             preparedStatement.executeUpdate();
 
-            System.out.println("Record is inserted into players table!");
+            System.out.println("Record is inserted into teams table!");
 
         } catch (SQLException e) {
 
@@ -131,19 +125,19 @@ public class PlayerRepository implements PlayerRepo {
             }
         }
 
-        return player;
+        return team;
     }
 
     @Override
-    public void removeById(int playerId) {
+    public void removeById(int teamId) {
         
          Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
-        String deletePlayerById = "DELETE FROM PLAYERS WHERE ID= "+playerId;
+        String deleteTeamById = "DELETE FROM TEAMS WHERE ID= "+teamId;
         try {
             dbConnection = getDBConnection();
-            preparedStatement = dbConnection.prepareStatement(deletePlayerById);
+            preparedStatement = dbConnection.prepareStatement(deleteTeamById);
             preparedStatement.executeUpdate();
         
         } catch (SQLException e) {
@@ -200,3 +194,6 @@ public class PlayerRepository implements PlayerRepo {
 
     }
 }
+
+
+

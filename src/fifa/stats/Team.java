@@ -23,6 +23,11 @@ public class Team {
         this.teamName = teamName;
     }
 
+    public Team(Integer id, String teamName) {
+        this.id = id;
+        this.teamName = teamName;
+    }
+
     @Override
     public String toString() {
         return "Team{" + "id=" + id + ", teamName=" + teamName + '}';

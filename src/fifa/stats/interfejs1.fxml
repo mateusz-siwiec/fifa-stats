@@ -40,17 +40,30 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="h_team" layoutX="-1.0" layoutY="92.0" prefHeight="418.0" prefWidth="597.0" style="-fx-background-color: #333399;">
+      <AnchorPane fx:id="h_home" layoutX="-5.0" layoutY="95.0" prefHeight="412.0" prefWidth="597.0" style="-fx-background-color: #333399;">
          <children>
-            <TextField fx:id="tfTeamName" layoutX="81.0" layoutY="106.0" promptText="Nazwa drużyny" />
-            <Button fx:id="addTeam" layoutX="123.0" layoutY="194.0" mnemonicParsing="false" onAction="#addTeam" text="Dodaj!" />
-            <Separator layoutX="22.0" layoutY="268.0" prefHeight="2.0" prefWidth="280.0" />
-            <Button fx:id="deleteTeam" layoutX="134.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteTeam" text="Usuń" />
-            <TableView fx:id="teamTable" layoutX="337.0" layoutY="20.0" prefHeight="364.0" prefWidth="200.0">
-               <columns>
-                  <TableColumn fx:id="teamNameColumn" prefWidth="199.0" text="Name" />
-               </columns>
-            </TableView>
+            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
+            <TextField fx:id="tfGuestGoals" layoutX="311.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
+            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
+            <ComboBox fx:id="hostPlayerBox" layoutX="57.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestPlayerBox" layoutX="361.0" layoutY="106.0" prefWidth="150.0" />
+            <ComboBox fx:id="hostTeamBox" layoutX="57.0" layoutY="167.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestTeamBox" layoutX="361.0" layoutY="167.0" prefWidth="150.0" />
+            <Label layoutX="175.0" layoutY="4.0" prefHeight="66.0" prefWidth="271.0" text="Dodaj wynik meczu!" textFill="#f2ff00">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="70.0" text="Gospodarz" textFill="#bc0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="75.0" text="Gośc" textFill="#bb0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="h_user" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
@@ -66,22 +79,34 @@
                 <TableColumn fx:id="userSurnameColumn" prefWidth="99.0" text="Surname" />
               </columns>
             </TableView>
+            <Label layoutX="104.0" layoutY="14.0" text="Dodaj gracza" textFill="#bf0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="h_home" layoutX="-5.0" layoutY="95.0" prefHeight="412.0" prefWidth="597.0" style="-fx-background-color: #333399;">
+      <AnchorPane fx:id="h_team" layoutX="-1.0" layoutY="92.0" prefHeight="418.0" prefWidth="597.0" style="-fx-background-color: #333399;">
          <children>
-            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <TextField fx:id="tfGuestGoals" layoutX="311.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
-            <ComboBox fx:id="hostPlayerBox" layoutX="57.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
-            <ComboBox fx:id="guestPlayerBox" layoutX="361.0" layoutY="106.0" prefWidth="150.0" />
-            <ComboBox fx:id="hostTeamBox" layoutX="57.0" layoutY="167.0" prefWidth="150.0" />
-            <ComboBox fx:id="guestTeamBox" layoutX="361.0" layoutY="167.0" prefWidth="150.0" />
+            <TextField fx:id="tfTeamName" layoutX="81.0" layoutY="106.0" promptText="Nazwa drużyny" />
+            <Button fx:id="addTeam" layoutX="123.0" layoutY="194.0" mnemonicParsing="false" onAction="#addTeam" text="Dodaj!" />
+            <Separator layoutX="22.0" layoutY="268.0" prefHeight="2.0" prefWidth="280.0" />
+            <Button fx:id="deleteTeam" layoutX="134.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteTeam" text="Usuń" />
+            <TableView fx:id="teamTable" layoutX="337.0" layoutY="20.0" prefHeight="364.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="teamNameColumn" prefWidth="199.0" text="Name" />
+               </columns>
+            </TableView>
+            <Label layoutX="98.0" layoutY="51.0" text="Dodaj drużynę" textFill="#bc0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="h_results" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
          <children>
-            <Label layoutX="217.0" layoutY="14.0" prefHeight="39.0" prefWidth="165.0" text="Lista wyników" textFill="#a82727">
+            <Label layoutX="216.0" layoutY="7.0" prefHeight="38.0" prefWidth="165.0" text="Lista wyników" textFill="#b90000">
                <font>
                   <Font size="27.0" />
                </font>

@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fifa.stats;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GamesRepository implements GamesRepo {
@@ -21,7 +20,48 @@ public class GamesRepository implements GamesRepo {
 
     @Override
     public List<Match> findAll() {
-        return null;
+
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        String findAllSQL = "SELECT * FROM GAMES";
+        List<Match> matchList = new ArrayList<Match>();
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(findAllSQL);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int hostPlayerId = rs.getInt("host_player_id");
+                int hostTeamId = rs.getInt("host_team_id");
+                int hostScore = rs.getInt("host_score");
+                int guestPlayerId = rs.getInt("guest_player_id");
+                int guestTeamId = rs.getInt("guest_team_id");
+                int guestScore = rs.getInt("guest_score");
+                PlayerRepository playerRepository = new PlayerRepository();
+                TeamRepository teamRepository = new TeamRepository();
+                LocalDate.now();
+                PlayerResult hostPlayer = new PlayerResult(playerRepository.findById(hostPlayerId), teamRepository.findById(hostTeamId), hostScore);
+                PlayerResult guestPlayer = new PlayerResult(playerRepository.findById(guestPlayerId), teamRepository.findById(guestTeamId), guestScore);
+
+                Match match = new Match(hostPlayer, guestPlayer, LocalDate.now());
+                matchList.add(match);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+        return matchList;
+
     }
 
     @Override
@@ -78,7 +118,30 @@ public class GamesRepository implements GamesRepo {
 
     @Override
     public void removeById(int gameId) {
+        
+         Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
 
+        String deleteGameById = "DELETE FROM GAMES WHERE ID= "+gameId;
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(deleteGameById);
+            preparedStatement.executeUpdate();
+        
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        } 
     }
 
     private static Connection getDBConnection() {

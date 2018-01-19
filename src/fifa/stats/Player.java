@@ -6,9 +6,13 @@ public class Player {
     private String name;
     private String surname;
 
-    @Override
+    public Player(String name) {
+        this.name = name;
+    }
+
+     @Override
     public String toString() {
-        return "Player{" + "id=" + id + ", name=" + name + ", surname=" + surname + '}';
+        return name + " " + surname + "(" + id + ")";
     }
 
     public Integer getId() {

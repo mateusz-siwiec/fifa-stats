@@ -30,7 +30,7 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" + "id=" + id + ", teamName=" + teamName + '}';
+        return teamName +" ("+" id = " + id + ")" ;
     }
 
     public Team(String teamName) {

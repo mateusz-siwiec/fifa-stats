@@ -242,7 +242,7 @@ public class FXMLDocumentController implements Initializable {
        hostScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
-                return new SimpleStringProperty(param.getValue().getHostResult().toString());
+                return new SimpleStringProperty (String.valueOf(param.getValue().getHostResult().getNumberOfGoals()) );
             }
         });
         
@@ -252,7 +252,7 @@ public class FXMLDocumentController implements Initializable {
        guestScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
-                return new SimpleStringProperty(param.getValue().getGuestResult().toString());
+                return new SimpleStringProperty(String.valueOf(param.getValue().getGuestResult().getNumberOfGoals()));
             }
         });
         

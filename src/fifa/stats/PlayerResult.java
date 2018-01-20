@@ -5,7 +5,7 @@ package fifa.stats;
 public class PlayerResult {
     private Player player;
     private Team team; 
-    private int numberOfGoals;
+    private Integer numberOfGoals;
 
     public Player getPlayer() {
         return player;
@@ -23,11 +23,11 @@ public class PlayerResult {
         this.team = team;
     }
 
-    public int getNumberOfGoals() {
+    public Integer getNumberOfGoals() {
         return numberOfGoals;
     }
 
-    public void setNumberOfGoals(int numberOfGoals) {
+    public void setNumberOfGoals(Integer numberOfGoals) {
         this.numberOfGoals = numberOfGoals;
     }
 
@@ -36,7 +36,7 @@ public class PlayerResult {
         return "PlayerResult{" + "player=" + player + ", team=" + team + ", numberOfGoals=" + numberOfGoals + '}';
     }
 
-    public PlayerResult(Player player, Team team, int numberOfGoals) {
+    public PlayerResult(Player player, Team team, Integer numberOfGoals) {
         this.player = player;
         this.team = team;
         this.numberOfGoals = numberOfGoals;

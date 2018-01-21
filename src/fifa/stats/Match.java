@@ -53,6 +53,13 @@ public class Match {
         this.DateOfTheMatch = DateOfTheMatch;
     }
 
+    public Match(Integer id, PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
+        this.id = id;
+        this.hostResult = hostResult;
+        this.guestResult = guestResult;
+        this.DateOfTheMatch = DateOfTheMatch;
+    }
+
     
 
 }

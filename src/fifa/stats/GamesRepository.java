@@ -43,7 +43,7 @@ public class GamesRepository implements GamesRepo {
                 PlayerResult hostPlayer = new PlayerResult(playerRepository.findById(hostPlayerId), teamRepository.findById(hostTeamId), hostScore);
                 PlayerResult guestPlayer = new PlayerResult(playerRepository.findById(guestPlayerId), teamRepository.findById(guestTeamId), guestScore);
 
-                Match match = new Match(hostPlayer, guestPlayer, LocalDate.now());
+                Match match = new Match( id, hostPlayer, guestPlayer, LocalDate.now());
                 matchList.add(match);
             }
         } catch (SQLException e) {

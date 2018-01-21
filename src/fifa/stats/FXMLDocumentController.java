@@ -110,6 +110,8 @@ public class FXMLDocumentController implements Initializable {
         GamesRepository gamesRepo = new GamesRepository();
         gamesRepo.insert(matchResult);
         refreshResultTable();
+        tfHostGoals.clear();
+        tfGuestGoals.clear();
        
       
         
@@ -125,6 +127,8 @@ public class FXMLDocumentController implements Initializable {
         refreshUserTable();
         refreshHostPlayersComboBox();
         refreshGuestPlayersComboBox();
+        tfName.clear();
+        tfSurname.clear();
     }
     
     @FXML
@@ -147,6 +151,7 @@ public class FXMLDocumentController implements Initializable {
         refreshTeamTable();
         refreshHostTeamsComboBox();
         refreshGuestTeamsComboBox();
+        tfTeamName.clear();
     }
 
     @FXML

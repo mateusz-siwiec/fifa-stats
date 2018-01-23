@@ -11,7 +11,8 @@ import java.util.List;
 
 
 public class TeamRepository implements TeamRepo {
-    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/fifaStats";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
@@ -107,12 +108,8 @@ public class TeamRepository implements TeamRepo {
             // execute insert SQL stetement
             preparedStatement.executeUpdate();
 
-            System.out.println("Record is inserted into team table!");
-
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
-
+            throw new RuntimeException(e.getMessage());
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -168,9 +165,7 @@ public class TeamRepository implements TeamRepo {
             Class.forName(DB_DRIVER);
 
         } catch (ClassNotFoundException e) {
-
-            System.out.println(e.getMessage());
-
+            throw new RuntimeException(e.getMessage());
         }
 
         try {
@@ -180,13 +175,8 @@ public class TeamRepository implements TeamRepo {
             return dbConnection;
 
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
-
+            throw new RuntimeException(e.getMessage());
         }
-
-        return dbConnection;
-
     }
 
     private static java.sql.Timestamp getCurrentTimeStamp() {

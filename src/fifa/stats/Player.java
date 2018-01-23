@@ -12,7 +12,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return name + " " + surname + "(" + id + ")";
+        return name + " " + surname + " [" + id + "]";
     }
 
     public Integer getId() {

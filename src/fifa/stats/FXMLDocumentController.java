@@ -45,6 +45,8 @@ public class FXMLDocumentController implements Initializable {
     private TableView<Match> resultTable;
     @FXML
     private Button editPlayerButton;
+    @FXML
+    private Button editTeamButton;
 
 
     @FXML
@@ -232,6 +234,23 @@ public class FXMLDocumentController implements Initializable {
             tfSurname.clear();
         }
     }
+    
+       @FXML
+    private void editTeam(ActionEvent event) {
+      Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
+      if (selectedTeam != null) {
+        Team updatedTeam = new Team(selectedTeam.getId(), tfTeamName.getText());
+        new TeamRepository().update(updatedTeam);
+
+        refreshTeamTable();
+       
+       refreshGuestTeamsComboBox();
+       refreshHostTeamsComboBox();
+       refreshResultTable();
+       
+         tfTeamName.clear();
+      }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -308,7 +327,7 @@ public class FXMLDocumentController implements Initializable {
         guestNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
-                Player player = param.getValue().getHostResult().getPlayer();
+                Player player = param.getValue().getGuestResult().getPlayer();
                 return new SimpleStringProperty(player.getName() + " " + player.getSurname());
             }
         });
@@ -412,8 +431,19 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         });
+    
+          editTeamButton.setDisable(true);
+        teamTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
+            if (selectedTeam != null) {
+              editTeamButton.setDisable(false);
+              tfTeamName.setText(selectedTeam.getTeamName());
+            }
+          }
+        });
     }
-
     private void refreshTeamTable() {
         List<Team> teamsFromDb = new TeamRepository().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(teamsFromDb);

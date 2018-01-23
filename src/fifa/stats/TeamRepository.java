@@ -155,6 +155,35 @@ public class TeamRepository implements TeamRepo {
         } 
         
     }
+    
+    @Override
+    public void update(Team team) {
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+
+        String updateTeamSql = "UPDATE teams SET name = ? WHERE id = ?";
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(updateTeamSql);
+            preparedStatement.setString(1, team.getTeamName());       
+            preparedStatement.setInt(2, team.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+    }
 
     private static Connection getDBConnection() {
 

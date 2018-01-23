@@ -13,4 +13,6 @@ public interface TeamRepo {
 
     void removeById(int teamId);
     
+    void update(Team team);
+    
 }

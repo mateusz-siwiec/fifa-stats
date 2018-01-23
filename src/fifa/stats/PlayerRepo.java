@@ -16,4 +16,6 @@ public interface PlayerRepo {
     Player insert(Player player);
 
     void removeById(int playerId);
+
+    void update(Player player);
 }

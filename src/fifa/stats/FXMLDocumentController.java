@@ -9,8 +9,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.TableColumn;
@@ -41,8 +43,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableView<Player> userTable;
     @FXML
-    private TableView<Match> resultTable; 
-    
+    private TableView<Match> resultTable;
+    @FXML
+    private Button editPlayerButton;
+
     @FXML
     private TableColumn<Team, String> teamNameColumn;
     @FXML
@@ -50,26 +54,23 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Player, String> userSurnameColumn;
 
-    
     @FXML
-    private TableColumn<Match, String> hostTeamResultTable; 
- 
-     @FXML
+    private TableColumn<Match, String> hostTeamResultTable;
+
+    @FXML
     private TableColumn<Match, String> hostNameResultTable;
-    
-     @FXML
+
+    @FXML
     private TableColumn<Match, String> hostScoreResultTable;
-     @FXML
+    @FXML
     private TableColumn<Match, String> guestScoreResultTable;
-     @FXML
+    @FXML
     private TableColumn<Match, String> guestTeamResultTable;
-     @FXML
+    @FXML
     private TableColumn<Match, String> guestNameResultTable;
-     @FXML
+    @FXML
     private TableColumn<Match, String> dateResultTable;
-    
-    
-    
+
     @FXML
     private ImageView btn_home;
     @FXML
@@ -102,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
         Team guestTeam = guestTeamBox.getSelectionModel().getSelectedItem();
         Player host = hostPlayerBox.getSelectionModel().getSelectedItem();
         Player guest = guestPlayerBox.getSelectionModel().getSelectedItem();
-       
+
         PlayerResult hostResult = new PlayerResult(host, hostTeam, Integer.parseInt(tfHostGoals.getText()));
         PlayerResult guestResult = new PlayerResult(guest, guestTeam, Integer.parseInt(tfGuestGoals.getText()));
 
@@ -112,9 +113,7 @@ public class FXMLDocumentController implements Initializable {
         refreshResultTable();
         tfHostGoals.clear();
         tfGuestGoals.clear();
-       
-      
-        
+
     }
 
     @FXML
@@ -130,7 +129,7 @@ public class FXMLDocumentController implements Initializable {
         tfName.clear();
         tfSurname.clear();
     }
-    
+
     @FXML
     private void deletePlayer(ActionEvent event) {
         Player selectedPlayer = userTable.getSelectionModel().getSelectedItem();
@@ -162,9 +161,9 @@ public class FXMLDocumentController implements Initializable {
         refreshTeamTable();
         refreshHostTeamsComboBox();
         refreshGuestTeamsComboBox();
-        
 
     }
+
     @FXML
     private void deleteResult(ActionEvent event) {
         Match selectedGame = resultTable.getSelectionModel().getSelectedItem();
@@ -172,8 +171,6 @@ public class FXMLDocumentController implements Initializable {
         deleteResult.removeById(selectedGame.getId());
         refreshResultTable();
     }
-
-    
 
     @FXML
     private void handleButtonAction(MouseEvent event) {
@@ -201,8 +198,22 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    @FXML
+    private void editPlayer(ActionEvent event) {
+        Player selectedPlayer = userTable.getSelectionModel().getSelectedItem();
+        if (selectedPlayer != null) {
+            Player updatedPlayer = new Player(selectedPlayer.getId(), tfName.getText(), tfSurname.getText());
+            new PlayerRepository().update(updatedPlayer);
+
+            refreshUserTable();
+            tfName.clear();
+            tfSurname.clear();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         teamNameColumn.setCellValueFactory(new Callback<CellDataFeatures<Team, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Team, String> param) {
@@ -219,21 +230,21 @@ public class FXMLDocumentController implements Initializable {
         });
         refreshUserTable();
 
-       userSurnameColumn.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
+        userSurnameColumn.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Player, String> param) {
                 return new SimpleStringProperty(param.getValue().getSurname());
             }
         });
         refreshUserTable();
-       
+
         hostTeamResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getHostResult().getTeam().getTeamName());
             }
         });
-        
+
         refreshResultTable();
         hostNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
@@ -241,60 +252,53 @@ public class FXMLDocumentController implements Initializable {
                 return new SimpleStringProperty(param.getValue().getHostResult().getPlayer().getName());
             }
         });
-        
+
         refreshResultTable();
-        
-       hostScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
+
+        hostScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
-                return new SimpleStringProperty (String.valueOf(param.getValue().getHostResult().getNumberOfGoals()) );
+                return new SimpleStringProperty(String.valueOf(param.getValue().getHostResult().getNumberOfGoals()));
             }
         });
-        
+
         refreshResultTable();
-        
-        
-       guestScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
+
+        guestScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(String.valueOf(param.getValue().getGuestResult().getNumberOfGoals()));
             }
         });
-        
+
         refreshResultTable();
-        
-        
-       guestTeamResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
+
+        guestTeamResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getGuestResult().getTeam().getTeamName());
             }
         });
-        
+
         refreshResultTable();
-        
-        
-       guestNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
+
+        guestNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getGuestResult().getPlayer().getName());
             }
         });
-        
+
         refreshResultTable();
-        
-       dateResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
+
+        dateResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getDateOfTheMatch().toString());
             }
         });
-        
-        refreshResultTable(); 
-        
-      
 
-        
+        refreshResultTable();
 
         hostPlayerBox.setConverter(new StringConverter<Player>() {
             @Override
@@ -314,7 +318,7 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshHostPlayersComboBox();
-        
+
         guestPlayerBox.setConverter(new StringConverter<Player>() {
             @Override
             public String toString(Player player) {
@@ -334,7 +338,6 @@ public class FXMLDocumentController implements Initializable {
         });
         refreshGuestPlayersComboBox();
 
-        
         hostTeamBox.setConverter(new StringConverter<Team>() {
             @Override
             public String toString(Team team) {
@@ -343,7 +346,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Team fromString(String comboBoxEntry) {
-                List<Team>teams = new TeamRepository().findAll();
+                List<Team> teams = new TeamRepository().findAll();
                 for (Team team : teams) {
                     if (team.toString().equals(comboBoxEntry)) {
                         return team;
@@ -353,8 +356,8 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshHostTeamsComboBox();
-        
-         guestTeamBox.setConverter(new StringConverter<Team>() {
+
+        guestTeamBox.setConverter(new StringConverter<Team>() {
             @Override
             public String toString(Team team) {
                 return team.toString();
@@ -362,7 +365,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Team fromString(String comboBoxEntry) {
-                List<Team>teams = new TeamRepository().findAll();
+                List<Team> teams = new TeamRepository().findAll();
                 for (Team team : teams) {
                     if (team.toString().equals(comboBoxEntry)) {
                         return team;
@@ -391,24 +394,29 @@ public class FXMLDocumentController implements Initializable {
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         hostPlayerBox.setItems(players);
     }
+
     private void refreshGuestPlayersComboBox() {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         guestPlayerBox.setItems(players);
     }
+
     private void refreshHostTeamsComboBox() {
         List<Team> allTeams = new TeamRepository().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(allTeams);
         hostTeamBox.setItems(teams);
     }
+
     private void refreshGuestTeamsComboBox() {
         List<Team> allTeams = new TeamRepository().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(allTeams);
         guestTeamBox.setItems(teams);
     }
-   private void refreshResultTable() {
+
+    private void refreshResultTable() {
         List<Match> allGames = new GamesRepository().findAll();
         ObservableList<Match> games = FXCollections.observableArrayList(allGames);
         resultTable.setItems(games);
     }
+
 }

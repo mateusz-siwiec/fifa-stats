@@ -1,4 +1,3 @@
-
 package fifa.stats;
 
 import java.sql.Connection;
@@ -43,7 +42,7 @@ public class GamesRepository implements GamesRepo {
                 PlayerResult hostPlayer = new PlayerResult(playerRepository.findById(hostPlayerId), teamRepository.findById(hostTeamId), hostScore);
                 PlayerResult guestPlayer = new PlayerResult(playerRepository.findById(guestPlayerId), teamRepository.findById(guestTeamId), guestScore);
 
-                Match match = new Match( id, hostPlayer, guestPlayer, LocalDate.now());
+                Match match = new Match(id, hostPlayer, guestPlayer, LocalDate.now());
                 matchList.add(match);
             }
         } catch (SQLException e) {
@@ -118,16 +117,16 @@ public class GamesRepository implements GamesRepo {
 
     @Override
     public void removeById(int gameId) {
-        
-         Connection dbConnection = null;
+
+        Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
-        String deleteGameById = "DELETE FROM GAMES WHERE ID= "+gameId;
+        String deleteGameById = "DELETE FROM GAMES WHERE ID= " + gameId;
         try {
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(deleteGameById);
             preparedStatement.executeUpdate();
-        
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -141,7 +140,7 @@ public class GamesRepository implements GamesRepo {
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        } 
+        }
     }
 
     private static Connection getDBConnection() {

@@ -1,10 +1,9 @@
-
 package fifa.stats;
 
-
 public class PlayerResult {
+
     private Player player;
-    private Team team; 
+    private Team team;
     private Integer numberOfGoals;
 
     public Player getPlayer() {
@@ -41,7 +40,5 @@ public class PlayerResult {
         this.team = team;
         this.numberOfGoals = numberOfGoals;
     }
-
-    
 
 }

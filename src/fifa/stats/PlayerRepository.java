@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 public class PlayerRepository implements PlayerRepo {
 
@@ -161,6 +161,35 @@ public class PlayerRepository implements PlayerRepo {
             }
         } 
         
+    }
+        @Override
+    public void update(Player player) {
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+
+        String updatePlayerSql = "UPDATE players SET name = ?, surname = ? WHERE id = ?";
+        try {
+            dbConnection = getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(updatePlayerSql);
+            preparedStatement.setString(1, player.getName());
+            preparedStatement.setString(2, player.getSurname());
+            preparedStatement.setInt(3, player.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (dbConnection != null) {
+                    dbConnection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
     }
 
     private static Connection getDBConnection() {

@@ -10,7 +10,7 @@ public class Player {
         this.name = name;
     }
 
-     @Override
+    @Override
     public String toString() {
         return name + " " + surname + "(" + id + ")";
     }

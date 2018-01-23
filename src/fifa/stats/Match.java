@@ -60,6 +60,4 @@ public class Match {
         this.DateOfTheMatch = DateOfTheMatch;
     }
 
-    
-
 }

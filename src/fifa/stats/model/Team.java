@@ -5,6 +5,15 @@ public class Team {
     private Integer id;
     private String teamName;
 
+    public Team(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public Team(Integer id, String teamName) {
+        this.id = id;
+        this.teamName = teamName;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -21,19 +30,8 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Team(Integer id, String teamName) {
-        this.id = id;
-        this.teamName = teamName;
-    }
-
     @Override
     public String toString() {
-        return teamName +" ["+ + id + "]" ;
+        return teamName + " [" + +id + "]";
     }
-
-    public Team(String teamName) {
-
-        this.teamName = teamName;
-    }
-
 }

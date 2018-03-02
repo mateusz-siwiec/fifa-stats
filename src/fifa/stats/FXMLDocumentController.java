@@ -54,7 +54,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button editTeamButton;
 
-
     @FXML
     private TableColumn<Team, String> teamNameColumn;
     @FXML
@@ -106,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void closeApp(MouseEvent event) {
-      Platform.exit();
+        Platform.exit();
     }
 
     @FXML
@@ -181,9 +180,8 @@ public class FXMLDocumentController implements Initializable {
                 TeamRepositoryImpl deleteTeam = new TeamRepositoryImpl();
                 deleteTeam.removeById(selectedTeam.getId());
             } catch (RuntimeException exception) {
-              System.err.println("Can't delete a team is referenced in any match.");
+                System.err.println("Can't delete a team is referenced in any match.");
             }
-
             refreshTeamTable();
             refreshHostTeamsComboBox();
             refreshGuestTeamsComboBox();
@@ -195,7 +193,6 @@ public class FXMLDocumentController implements Initializable {
         Match selectedGame = resultTable.getSelectionModel().getSelectedItem();
         MatchRepositoryImpl deleteResult = new MatchRepositoryImpl();
         deleteResult.removeById(selectedGame.getId());
-
         refreshResultTable();
     }
 
@@ -222,7 +219,6 @@ public class FXMLDocumentController implements Initializable {
             h_home.setVisible(false);
             h_team.setVisible(true);
         }
-
     }
 
     @FXML
@@ -231,7 +227,6 @@ public class FXMLDocumentController implements Initializable {
         if (selectedPlayer != null) {
             Player updatedPlayer = new Player(selectedPlayer.getId(), tfName.getText(), tfSurname.getText());
             new PlayerRepositoryImpl().update(updatedPlayer);
-
             refreshUserTable();
             refreshGuestPlayersComboBox();
             refreshHostPlayersComboBox();
@@ -240,27 +235,23 @@ public class FXMLDocumentController implements Initializable {
             tfSurname.clear();
         }
     }
-    
-       @FXML
-    private void editTeam(ActionEvent event) {
-      Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
-      if (selectedTeam != null) {
-        Team updatedTeam = new Team(selectedTeam.getId(), tfTeamName.getText());
-        new TeamRepositoryImpl().update(updatedTeam);
 
-        refreshTeamTable();
-       
-       refreshGuestTeamsComboBox();
-       refreshHostTeamsComboBox();
-       refreshResultTable();
-       
-         tfTeamName.clear();
-      }
+    @FXML
+    private void editTeam(ActionEvent event) {
+        Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
+        if (selectedTeam != null) {
+            Team updatedTeam = new Team(selectedTeam.getId(), tfTeamName.getText());
+            new TeamRepositoryImpl().update(updatedTeam);
+            refreshTeamTable();
+            refreshGuestTeamsComboBox();
+            refreshHostTeamsComboBox();
+            refreshResultTable();
+            tfTeamName.clear();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         teamNameColumn.setCellValueFactory(new Callback<CellDataFeatures<Team, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Team, String> param) {
@@ -268,7 +259,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshTeamTable();
-
         userNameColumn.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Player, String> param) {
@@ -276,7 +266,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshUserTable();
-
         userSurnameColumn.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Player, String> param) {
@@ -284,14 +273,12 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshUserTable();
-
         hostTeamResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getHostResult().getTeam().getTeamName());
             }
         });
-
         refreshResultTable();
         hostNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
@@ -300,37 +287,28 @@ public class FXMLDocumentController implements Initializable {
                 return new SimpleStringProperty(player.getName() + " " + player.getSurname());
             }
         });
-        
-
         refreshResultTable();
-
         hostScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(String.valueOf(param.getValue().getHostResult().getNumberOfGoals()));
             }
         });
-
         refreshResultTable();
-
         guestScoreResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(String.valueOf(param.getValue().getGuestResult().getNumberOfGoals()));
             }
         });
-
         refreshResultTable();
-
         guestTeamResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getGuestResult().getTeam().getTeamName());
             }
         });
-
         refreshResultTable();
-
         guestNameResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
@@ -338,18 +316,14 @@ public class FXMLDocumentController implements Initializable {
                 return new SimpleStringProperty(player.getName() + " " + player.getSurname());
             }
         });
-
         refreshResultTable();
-
         dateResultTable.setCellValueFactory(new Callback<CellDataFeatures<Match, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Match, String> param) {
                 return new SimpleStringProperty(param.getValue().getDateOfTheMatch().toString());
             }
         });
-
         refreshResultTable();
-
         hostPlayerBox.setConverter(new StringConverter<Player>() {
             @Override
             public String toString(Player player) {
@@ -368,7 +342,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshHostPlayersComboBox();
-
         guestPlayerBox.setConverter(new StringConverter<Player>() {
             @Override
             public String toString(Player player) {
@@ -387,7 +360,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshGuestPlayersComboBox();
-
         hostTeamBox.setConverter(new StringConverter<Team>() {
             @Override
             public String toString(Team team) {
@@ -406,7 +378,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshHostTeamsComboBox();
-
         guestTeamBox.setConverter(new StringConverter<Team>() {
             @Override
             public String toString(Team team) {
@@ -425,7 +396,6 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         refreshGuestTeamsComboBox();
-
         editPlayerButton.setDisable(true);
         userTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -438,19 +408,19 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         });
-    
-          editTeamButton.setDisable(true);
+        editTeamButton.setDisable(true);
         teamTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
-            if (selectedTeam != null) {
-              editTeamButton.setDisable(false);
-              tfTeamName.setText(selectedTeam.getTeamName());
+            @Override
+            public void handle(MouseEvent event) {
+                Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
+                if (selectedTeam != null) {
+                    editTeamButton.setDisable(false);
+                    tfTeamName.setText(selectedTeam.getTeamName());
+                }
             }
-          }
         });
     }
+
     private void refreshTeamTable() {
         List<Team> teamsFromDb = new TeamRepositoryImpl().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(teamsFromDb);
@@ -492,5 +462,4 @@ public class FXMLDocumentController implements Initializable {
         ObservableList<Match> games = FXCollections.observableArrayList(allGames);
         resultTable.setItems(games);
     }
-
 }

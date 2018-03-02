@@ -9,6 +9,12 @@ public class PlayerResult {
     private Team team;
     private Integer numberOfGoals;
 
+    public PlayerResult(Player player, Team team, Integer numberOfGoals) {
+        this.player = player;
+        this.team = team;
+        this.numberOfGoals = numberOfGoals;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -37,11 +43,4 @@ public class PlayerResult {
     public String toString() {
         return "PlayerResult{" + "player=" + player + ", team=" + team + ", numberOfGoals=" + numberOfGoals + '}';
     }
-
-    public PlayerResult(Player player, Team team, Integer numberOfGoals) {
-        this.player = player;
-        this.team = team;
-        this.numberOfGoals = numberOfGoals;
-    }
-
 }

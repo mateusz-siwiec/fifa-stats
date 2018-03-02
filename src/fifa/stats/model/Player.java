@@ -6,6 +6,17 @@ public class Player {
     private String name;
     private String surname;
 
+    public Player(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Player(Integer id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+    }
+
     public Player(String name) {
         this.name = name;
     }
@@ -38,16 +49,4 @@ public class Player {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-    public Player(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public Player(Integer id, String name, String surname) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-    }
-
 }

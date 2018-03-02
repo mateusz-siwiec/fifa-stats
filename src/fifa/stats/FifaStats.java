@@ -1,4 +1,5 @@
 package fifa.stats;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +19,7 @@ public class FifaStats extends Application {
     }
 
     @Override
-
     public void start(Stage stage) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("user-interface.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -44,7 +43,5 @@ public class FifaStats extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
-    
+
 }

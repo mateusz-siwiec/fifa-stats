@@ -11,6 +11,19 @@ public class Match {
     private PlayerResult guestResult;
     private LocalDate DateOfTheMatch;
 
+    public Match(PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
+        this.hostResult = hostResult;
+        this.guestResult = guestResult;
+        this.DateOfTheMatch = DateOfTheMatch;
+    }
+
+    public Match(Integer id, PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
+        this.id = id;
+        this.hostResult = hostResult;
+        this.guestResult = guestResult;
+        this.DateOfTheMatch = DateOfTheMatch;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,18 +60,4 @@ public class Match {
     public String toString() {
         return "Match{" + "id=" + id + ", hostResult=" + hostResult + ", guestResult=" + guestResult + ", DateOfTheMatch=" + DateOfTheMatch + '}';
     }
-
-    public Match(PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
-        this.hostResult = hostResult;
-        this.guestResult = guestResult;
-        this.DateOfTheMatch = DateOfTheMatch;
-    }
-
-    public Match(Integer id, PlayerResult hostResult, PlayerResult guestResult, LocalDate DateOfTheMatch) {
-        this.id = id;
-        this.hostResult = hostResult;
-        this.guestResult = guestResult;
-        this.DateOfTheMatch = DateOfTheMatch;
-    }
-
 }

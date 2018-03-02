@@ -21,7 +21,7 @@ public class FifaStats extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("interfejs1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("user-interface.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

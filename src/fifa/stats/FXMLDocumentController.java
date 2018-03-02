@@ -1,5 +1,8 @@
 package fifa.stats;
 
+import fifa.stats.repositories.MatchRepositoryImpl;
+import fifa.stats.repositories.PlayerRepositoryImpl;
+import fifa.stats.repositories.TeamRepositoryImpl;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -114,7 +117,7 @@ public class FXMLDocumentController implements Initializable {
         PlayerResult guestResult = new PlayerResult(guest, guestTeam, Integer.parseInt(tfGuestGoals.getText()));
 
         Match matchResult = new Match(hostResult, guestResult, LocalDate.now());
-        MatchRepository gamesRepo = new MatchRepository();
+        MatchRepositoryImpl gamesRepo = new MatchRepositoryImpl();
         gamesRepo.insert(matchResult);
         refreshResultTable();
 
@@ -129,7 +132,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void addPlayer(ActionEvent event) {
         Player player = new Player(tfName.getText(), tfSurname.getText());
-        PlayerRepository playerRepo = new PlayerRepository();
+        PlayerRepositoryImpl playerRepo = new PlayerRepositoryImpl();
         Player insertedPlayer = playerRepo.insert(player);
 
         refreshUserTable();
@@ -144,7 +147,7 @@ public class FXMLDocumentController implements Initializable {
         Player selectedPlayer = userTable.getSelectionModel().getSelectedItem();
         if (selectedPlayer != null) {
             try {
-                PlayerRepository deleteTeam = new PlayerRepository();
+                PlayerRepositoryImpl deleteTeam = new PlayerRepositoryImpl();
                 deleteTeam.removeById(selectedPlayer.getId());
             } catch (RuntimeException exception) {
                 System.err.println("Can't delete a player is referenced in any match.");
@@ -158,7 +161,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void addTeam(ActionEvent event) {
         Team team = new Team(tfTeamName.getText());
-        TeamRepository teamRepo = new TeamRepository();
+        TeamRepositoryImpl teamRepo = new TeamRepositoryImpl();
         Team insertedTeam = teamRepo.insert(team);
 
         refreshTeamTable();
@@ -172,7 +175,7 @@ public class FXMLDocumentController implements Initializable {
         Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
         if (selectedTeam != null) {
             try {
-                TeamRepository deleteTeam = new TeamRepository();
+                TeamRepositoryImpl deleteTeam = new TeamRepositoryImpl();
                 deleteTeam.removeById(selectedTeam.getId());
             } catch (RuntimeException exception) {
               System.err.println("Can't delete a team is referenced in any match.");
@@ -187,7 +190,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void deleteResult(ActionEvent event) {
         Match selectedGame = resultTable.getSelectionModel().getSelectedItem();
-        MatchRepository deleteResult = new MatchRepository();
+        MatchRepositoryImpl deleteResult = new MatchRepositoryImpl();
         deleteResult.removeById(selectedGame.getId());
 
         refreshResultTable();
@@ -224,7 +227,7 @@ public class FXMLDocumentController implements Initializable {
         Player selectedPlayer = userTable.getSelectionModel().getSelectedItem();
         if (selectedPlayer != null) {
             Player updatedPlayer = new Player(selectedPlayer.getId(), tfName.getText(), tfSurname.getText());
-            new PlayerRepository().update(updatedPlayer);
+            new PlayerRepositoryImpl().update(updatedPlayer);
 
             refreshUserTable();
             refreshGuestPlayersComboBox();
@@ -240,7 +243,7 @@ public class FXMLDocumentController implements Initializable {
       Team selectedTeam = teamTable.getSelectionModel().getSelectedItem();
       if (selectedTeam != null) {
         Team updatedTeam = new Team(selectedTeam.getId(), tfTeamName.getText());
-        new TeamRepository().update(updatedTeam);
+        new TeamRepositoryImpl().update(updatedTeam);
 
         refreshTeamTable();
        
@@ -294,6 +297,7 @@ public class FXMLDocumentController implements Initializable {
                 return new SimpleStringProperty(player.getName() + " " + player.getSurname());
             }
         });
+        
 
         refreshResultTable();
 
@@ -351,7 +355,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Player fromString(String comboBoxEntry) {
-                List<Player> players = new PlayerRepository().findAll();
+                List<Player> players = new PlayerRepositoryImpl().findAll();
                 for (Player player : players) {
                     if (player.toString().equals(comboBoxEntry)) {
                         return player;
@@ -370,7 +374,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Player fromString(String comboBoxEntry) {
-                List<Player> players = new PlayerRepository().findAll();
+                List<Player> players = new PlayerRepositoryImpl().findAll();
                 for (Player player : players) {
                     if (player.toString().equals(comboBoxEntry)) {
                         return player;
@@ -389,7 +393,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Team fromString(String comboBoxEntry) {
-                List<Team> teams = new TeamRepository().findAll();
+                List<Team> teams = new TeamRepositoryImpl().findAll();
                 for (Team team : teams) {
                     if (team.toString().equals(comboBoxEntry)) {
                         return team;
@@ -408,7 +412,7 @@ public class FXMLDocumentController implements Initializable {
 
             @Override
             public Team fromString(String comboBoxEntry) {
-                List<Team> teams = new TeamRepository().findAll();
+                List<Team> teams = new TeamRepositoryImpl().findAll();
                 for (Team team : teams) {
                     if (team.toString().equals(comboBoxEntry)) {
                         return team;
@@ -445,43 +449,43 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     private void refreshTeamTable() {
-        List<Team> teamsFromDb = new TeamRepository().findAll();
+        List<Team> teamsFromDb = new TeamRepositoryImpl().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(teamsFromDb);
         teamTable.setItems(teams);
     }
 
     private void refreshUserTable() {
-        List<Player> playersFromDb = new PlayerRepository().findAll();
+        List<Player> playersFromDb = new PlayerRepositoryImpl().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(playersFromDb);
         userTable.setItems(players);
     }
 
     private void refreshHostPlayersComboBox() {
-        List<Player> allPlayers = new PlayerRepository().findAll();
+        List<Player> allPlayers = new PlayerRepositoryImpl().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         hostPlayerBox.setItems(players);
     }
 
     private void refreshGuestPlayersComboBox() {
-        List<Player> allPlayers = new PlayerRepository().findAll();
+        List<Player> allPlayers = new PlayerRepositoryImpl().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         guestPlayerBox.setItems(players);
     }
 
     private void refreshHostTeamsComboBox() {
-        List<Team> allTeams = new TeamRepository().findAll();
+        List<Team> allTeams = new TeamRepositoryImpl().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(allTeams);
         hostTeamBox.setItems(teams);
     }
 
     private void refreshGuestTeamsComboBox() {
-        List<Team> allTeams = new TeamRepository().findAll();
+        List<Team> allTeams = new TeamRepositoryImpl().findAll();
         ObservableList<Team> teams = FXCollections.observableArrayList(allTeams);
         guestTeamBox.setItems(teams);
     }
 
     private void refreshResultTable() {
-        List<Match> allGames = new MatchRepository().findAll();
+        List<Match> allGames = new MatchRepositoryImpl().findAll();
         ObservableList<Match> games = FXCollections.observableArrayList(allGames);
         resultTable.setItems(games);
     }

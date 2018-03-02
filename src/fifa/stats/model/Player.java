@@ -1,4 +1,4 @@
-package fifa.stats;
+package fifa.stats.model;
 
 public class Player {
 

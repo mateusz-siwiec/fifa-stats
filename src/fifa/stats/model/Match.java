@@ -1,5 +1,6 @@
-package fifa.stats;
+package fifa.stats.model;
 
+import fifa.stats.PlayerResult;
 import java.time.LocalDate;
 import java.util.Date;
 

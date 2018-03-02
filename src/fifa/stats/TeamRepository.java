@@ -1,6 +1,7 @@
 
 package fifa.stats;
 
+import fifa.stats.model.Team;
 import java.util.List;
 
 

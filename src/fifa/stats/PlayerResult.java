@@ -1,5 +1,8 @@
 package fifa.stats;
 
+import fifa.stats.model.Team;
+import fifa.stats.model.Player;
+
 public class PlayerResult {
 
     private Player player;

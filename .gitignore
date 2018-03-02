@@ -1,2 +1,12 @@
-/dist/
-/build/
+out/
+*.iml
+.idea/
+
+
+nbproject/
+
+manifest.mf
+
+build.xml
+
+*.jar

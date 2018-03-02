@@ -1,7 +1,7 @@
 
 package fifa.stats.repositories;
 
-import fifa.stats.Team;
+import fifa.stats.model.Team;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

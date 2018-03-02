@@ -5,6 +5,7 @@
  */
 package fifa.stats;
 
+import fifa.stats.model.Player;
 import java.util.List;
 
 public interface PlayerRepository {

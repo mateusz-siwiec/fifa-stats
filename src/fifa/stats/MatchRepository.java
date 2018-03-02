@@ -1,6 +1,7 @@
 
 package fifa.stats;
 
+import fifa.stats.model.Match;
 import java.util.List;
 
 public interface MatchRepository {

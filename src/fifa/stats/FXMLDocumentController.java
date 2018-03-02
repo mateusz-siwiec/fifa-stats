@@ -1,5 +1,8 @@
 package fifa.stats;
 
+import fifa.stats.model.Team;
+import fifa.stats.model.Match;
+import fifa.stats.model.Player;
 import fifa.stats.repositories.MatchRepositoryImpl;
 import fifa.stats.repositories.PlayerRepositoryImpl;
 import fifa.stats.repositories.TeamRepositoryImpl;

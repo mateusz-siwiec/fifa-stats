@@ -17,11 +17,6 @@ import fifa.stats.MatchRepository;
 
 public class MatchRepositoryImpl implements MatchRepository {
 
-    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/fifaStats";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
-
     @Override
     public List<Match> findAll() {
 
@@ -30,7 +25,7 @@ public class MatchRepositoryImpl implements MatchRepository {
         String findAllSQL = "SELECT * FROM GAMES";
         List<Match> matchList = new ArrayList<Match>();
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findAllSQL);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -84,7 +79,7 @@ public class MatchRepositoryImpl implements MatchRepository {
                 + "(?,?,?,?,?,?,?)";
 
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
             preparedStatement.setInt(1, match.getHostResult().getPlayer().getId());
@@ -95,7 +90,6 @@ public class MatchRepositoryImpl implements MatchRepository {
             preparedStatement.setInt(6, match.getGuestResult().getNumberOfGoals());
             preparedStatement.setDate(7, Date.valueOf(match.getDateOfTheMatch()));
 
-            // execute insert SQL stetement
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -124,7 +118,7 @@ public class MatchRepositoryImpl implements MatchRepository {
 
         String deleteGameById = "DELETE FROM GAMES WHERE ID= " + gameId;
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(deleteGameById);
             preparedStatement.executeUpdate();
 
@@ -143,35 +137,4 @@ public class MatchRepositoryImpl implements MatchRepository {
             }
         }
     }
-
-    private static Connection getDBConnection() {
-
-        Connection dbConnection = null;
-
-        try {
-
-            Class.forName(DB_DRIVER);
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        try {
-
-            dbConnection = DriverManager.getConnection(
-                    DB_CONNECTION, DB_USER, DB_PASSWORD);
-            return dbConnection;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    private static java.sql.Timestamp getCurrentTimeStamp() {
-
-        java.util.Date today = new java.util.Date();
-        return new java.sql.Timestamp(today.getTime());
-
-    }
-
 }

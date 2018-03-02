@@ -14,11 +14,6 @@ import fifa.stats.TeamRepository;
 
 public class TeamRepositoryImpl implements TeamRepository {
 
-    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/fifaStats";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
-
     @Override
     public List<Team> findAll() {
 
@@ -27,7 +22,7 @@ public class TeamRepositoryImpl implements TeamRepository {
         String findAllSQL = "SELECT * FROM TEAMS";
         List<Team> teamList = new ArrayList<Team>();
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findAllSQL);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -60,7 +55,7 @@ public class TeamRepositoryImpl implements TeamRepository {
         PreparedStatement preparedStatement = null;
         String findPlayerById = "SELECT * FROM TEAMS WHERE ID =" +teamId;
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findPlayerById);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -100,16 +95,10 @@ public class TeamRepositoryImpl implements TeamRepository {
                 + "(?)";
 
         try {
-            dbConnection = getDBConnection();
-            preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-
-           
+            dbConnection = DatabaseConnector.getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(insertTableSQL);         
             preparedStatement.setString(1, team.getTeamName());
-           
-
-            // execute insert SQL stetement
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         } finally {
@@ -117,7 +106,6 @@ public class TeamRepositoryImpl implements TeamRepository {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-
                 if (dbConnection != null) {
                     dbConnection.close();
                 }
@@ -125,7 +113,6 @@ public class TeamRepositoryImpl implements TeamRepository {
                 throw new RuntimeException(e.getMessage());
             }
         }
-
         return team;
     }
 
@@ -134,13 +121,11 @@ public class TeamRepositoryImpl implements TeamRepository {
         
          Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
-
         String deleteTeamById = "DELETE FROM TEAMS WHERE ID= "+teamId;
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(deleteTeamById);
             preparedStatement.executeUpdate();
-        
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -165,7 +150,7 @@ public class TeamRepositoryImpl implements TeamRepository {
 
         String updateTeamSql = "UPDATE teams SET name = ? WHERE id = ?";
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(updateTeamSql);
             preparedStatement.setString(1, team.getTeamName());       
             preparedStatement.setInt(2, team.getId());
@@ -185,35 +170,5 @@ public class TeamRepositoryImpl implements TeamRepository {
                 throw new RuntimeException(e.getMessage());
             }
         }
-    }
-
-    private static Connection getDBConnection() {
-
-        Connection dbConnection = null;
-
-        try {
-
-            Class.forName(DB_DRIVER);
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        try {
-
-            dbConnection = DriverManager.getConnection(
-                    DB_CONNECTION, DB_USER, DB_PASSWORD);
-            return dbConnection;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    private static java.sql.Timestamp getCurrentTimeStamp() {
-
-        java.util.Date today = new java.util.Date();
-        return new java.sql.Timestamp(today.getTime());
-
     }
 }

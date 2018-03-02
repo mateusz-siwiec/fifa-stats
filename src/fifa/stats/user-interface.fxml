@@ -15,27 +15,27 @@
          <children>
             <ImageView fx:id="btn_home" layoutX="37.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/home.png" />
+                  <Image url="@images/home.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_results" layoutX="481.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/results.png" />
+                  <Image url="@images/results.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_user" layoutX="183.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/user.png" />
+                  <Image url="@images/user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="565.0" layoutY="2.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/close.png" />
+                  <Image url="@images/close.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_team" layoutX="331.0" layoutY="20.0" onMousePressed="#handleButtonAction">
                <image>
-                  <Image url="@../../../images/team.png" />
+                  <Image url="@images/team.png" />
                </image>
             </ImageView>
          </children>

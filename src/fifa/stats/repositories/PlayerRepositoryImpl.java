@@ -1,4 +1,3 @@
-
 package fifa.stats.repositories;
 
 import fifa.stats.model.Player;
@@ -11,13 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import fifa.stats.PlayerRepository;
 
-
 public class PlayerRepositoryImpl implements PlayerRepository {
-
-    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/fifaStats";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
 
     @Override
     public List<Player> findAll() {
@@ -27,7 +20,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
         String findAllSQL = "SELECT * FROM PLAYERS";
         List<Player> playerList = new ArrayList<Player>();
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findAllSQL);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -58,9 +51,9 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     public Player findById(int playerId) {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
-        String findPlayerById = "SELECT * FROM PLAYERS WHERE ID =" +playerId;
+        String findPlayerById = "SELECT * FROM PLAYERS WHERE ID =" + playerId;
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(findPlayerById);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -86,27 +79,21 @@ public class PlayerRepositoryImpl implements PlayerRepository {
             }
         }
         return null;
-
     }
 
     @Override
     public Player insert(Player player) {
-
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
-
         String insertTableSQL = "INSERT INTO PLAYERS"
                 + "(NAME, SURNAME) VALUES"
                 + "(?,?)";
-
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-
             preparedStatement.setString(1, player.getName());
             preparedStatement.setString(2, player.getSurname());
 
-            // execute insert SQL stetement
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -129,16 +116,16 @@ public class PlayerRepositoryImpl implements PlayerRepository {
 
     @Override
     public void removeById(int playerId) {
-        
-         Connection dbConnection = null;
+
+        Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
-        String deletePlayerById = "DELETE FROM PLAYERS WHERE ID= "+playerId;
+        String deletePlayerById = "DELETE FROM PLAYERS WHERE ID= " + playerId;
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(deletePlayerById);
             preparedStatement.executeUpdate();
-        
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -152,17 +139,16 @@ public class PlayerRepositoryImpl implements PlayerRepository {
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        } 
-        
+        }
     }
-        @Override
+    @Override
     public void update(Player player) {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
         String updatePlayerSql = "UPDATE players SET name = ?, surname = ? WHERE id = ?";
         try {
-            dbConnection = getDBConnection();
+            dbConnection = DatabaseConnector.getDBConnection();
             preparedStatement = dbConnection.prepareStatement(updatePlayerSql);
             preparedStatement.setString(1, player.getName());
             preparedStatement.setString(2, player.getSurname());
@@ -183,35 +169,5 @@ public class PlayerRepositoryImpl implements PlayerRepository {
                 throw new RuntimeException(e.getMessage());
             }
         }
-    }
-
-    private static Connection getDBConnection() {
-
-        Connection dbConnection = null;
-
-        try {
-
-            Class.forName(DB_DRIVER);
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        try {
-
-            dbConnection = DriverManager.getConnection(
-                    DB_CONNECTION, DB_USER, DB_PASSWORD);
-            return dbConnection;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    private static java.sql.Timestamp getCurrentTimeStamp() {
-
-        java.util.Date today = new java.util.Date();
-        return new java.sql.Timestamp(today.getTime());
-
     }
 }

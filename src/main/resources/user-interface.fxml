@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fifa.stats.FXMLDocumentController">
+   <children>
+      <AnchorPane fx:id="topbar" prefHeight="89.0" prefWidth="591.0" style="-fx-background-color: #333399;">
+         <children>
+            <ImageView fx:id="btn_home" layoutX="37.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@home.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btn_results" layoutX="481.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="results.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btn_user" layoutX="183.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="565.0" layoutY="2.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@close.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btn_team" layoutX="331.0" layoutY="20.0" onMousePressed="#handleButtonAction">
+               <image>
+                  <Image url="@team.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_user" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
+         <children>
+            <TextField fx:id="tfName" layoutX="81.0" layoutY="57.0" promptText="Imie" />
+            <TextField fx:id="tfSurname" layoutX="81.0" layoutY="106.0" promptText="Nazwisko" />
+            <Button fx:id="addPlayer" layoutX="123.0" layoutY="194.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj!" />
+            <Separator layoutX="22.0" layoutY="268.0" prefHeight="2.0" prefWidth="280.0" />
+            <Button layoutX="68.0" layoutY="315.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
+            <TableView fx:id="userTable" layoutX="337.0" layoutY="20.0" prefHeight="364.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="userNameColumn" prefWidth="100.0" text="Name" />
+                <TableColumn fx:id="userSurnameColumn" prefWidth="99.0" text="Surname" />
+              </columns>
+            </TableView>
+            <Label layoutX="104.0" layoutY="14.0" text="Dodaj gracza" textFill="#bf0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="editPlayerButton" layoutX="187.0" layoutY="315.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj gracza" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_results" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
+         <children>
+            <Label layoutX="216.0" layoutY="7.0" prefHeight="38.0" prefWidth="165.0" text="Lista wyników" textFill="#b90000">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Button layoutX="256.0" layoutY="357.0" mnemonicParsing="false" onAction="#deleteResult" text="Usuń wynik" />
+            <TableView fx:id="resultTable" layoutX="2.0" layoutY="46.0" prefHeight="298.0" prefWidth="585.0">
+              <columns>
+                <TableColumn fx:id="hostNameResultTable" prefWidth="83.0" text="Host name" />
+                  <TableColumn fx:id="hostTeamResultTable" prefWidth="107.0" text="Host team" />
+                  <TableColumn fx:id="hostScoreResultTable" prefWidth="73.0" text="H_Score" />
+                  <TableColumn fx:id="guestScoreResultTable" prefWidth="84.0" text="G_Score" />
+                  <TableColumn fx:id="guestTeamResultTable" prefWidth="75.0" text="Guest team" />
+                  <TableColumn fx:id="guestNameResultTable" prefWidth="79.0" text="Guest Name" />
+                  <TableColumn fx:id="dateResultTable" prefWidth="83.0" text="Date" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_team" layoutX="-1.0" layoutY="92.0" prefHeight="418.0" prefWidth="597.0" style="-fx-background-color: #333399;">
+         <children>
+            <TextField fx:id="tfTeamName" layoutX="81.0" layoutY="106.0" promptText="Nazwa drużyny" />
+            <Button fx:id="addTeam" layoutX="123.0" layoutY="194.0" mnemonicParsing="false" onAction="#addTeam" text="Dodaj!" />
+            <Separator layoutX="22.0" layoutY="268.0" prefHeight="2.0" prefWidth="280.0" />
+            <Button fx:id="deleteTeam" layoutX="54.0" layoutY="317.0" mnemonicParsing="false" onAction="#deleteTeam" text="Usuń" />
+            <TableView fx:id="teamTable" layoutX="337.0" layoutY="20.0" prefHeight="364.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="teamNameColumn" prefWidth="199.0" text="Name" />
+               </columns>
+            </TableView>
+            <Label layoutX="98.0" layoutY="51.0" text="Dodaj drużynę" textFill="#bc0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="editTeamButton" layoutX="162.0" layoutY="317.0" mnemonicParsing="false" onAction="#editTeam" text="Edytuj drużynę" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_home" layoutX="-5.0" layoutY="95.0" prefHeight="412.0" prefWidth="597.0" style="-fx-background-color: #333399;">
+         <children>
+            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="31.0" prefWidth="31.0" />
+            <TextField fx:id="tfGuestGoals" layoutX="305.0" layoutY="167.0" prefHeight="31.0" prefWidth="31.0" />
+            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
+            <ComboBox fx:id="hostPlayerBox" layoutX="57.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestPlayerBox" layoutX="361.0" layoutY="106.0" prefWidth="150.0" />
+            <ComboBox fx:id="hostTeamBox" layoutX="57.0" layoutY="167.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestTeamBox" layoutX="361.0" layoutY="167.0" prefWidth="150.0" />
+            <Label layoutX="175.0" layoutY="4.0" prefHeight="66.0" prefWidth="271.0" text="Dodaj wynik meczu!" textFill="#f2ff00">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="70.0" text="Gospodarz" textFill="#bc0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="75.0" text="Gośc" textFill="#bb0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

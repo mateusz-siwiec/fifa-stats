@@ -15,55 +15,29 @@
          <children>
             <ImageView fx:id="btn_home" layoutX="37.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/home.png" />
+                  <Image url="@home.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_results" layoutX="481.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/results.png" />
+                  <Image url="results.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_user" layoutX="183.0" layoutY="19.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/user.png" />
+                  <Image url="@user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="565.0" layoutY="2.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/close.png" />
+                  <Image url="@close.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btn_team" layoutX="331.0" layoutY="20.0" onMousePressed="#handleButtonAction">
                <image>
-                  <Image url="@images/team.png" />
+                  <Image url="@team.png" />
                </image>
             </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="h_home" layoutX="-5.0" layoutY="95.0" prefHeight="412.0" prefWidth="597.0" style="-fx-background-color: #333399;">
-         <children>
-            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <TextField fx:id="tfGuestGoals" layoutX="311.0" layoutY="167.0" prefHeight="25.0" prefWidth="25.0" />
-            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
-            <ComboBox fx:id="hostPlayerBox" layoutX="57.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
-            <ComboBox fx:id="guestPlayerBox" layoutX="361.0" layoutY="106.0" prefWidth="150.0" />
-            <ComboBox fx:id="hostTeamBox" layoutX="57.0" layoutY="167.0" prefWidth="150.0" />
-            <ComboBox fx:id="guestTeamBox" layoutX="361.0" layoutY="167.0" prefWidth="150.0" />
-            <Label layoutX="175.0" layoutY="4.0" prefHeight="66.0" prefWidth="271.0" text="Dodaj wynik meczu!" textFill="#f2ff00">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label layoutX="96.0" layoutY="70.0" text="Gospodarz" textFill="#bc0000">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="422.0" layoutY="75.0" text="Gośc" textFill="#bb0000">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="h_user" layoutY="95.0" prefHeight="412.0" prefWidth="591.0" style="-fx-background-color: #333399;">
@@ -125,6 +99,32 @@
                </font>
             </Label>
             <Button fx:id="editTeamButton" layoutX="162.0" layoutY="317.0" mnemonicParsing="false" onAction="#editTeam" text="Edytuj drużynę" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="h_home" layoutX="-5.0" layoutY="95.0" prefHeight="412.0" prefWidth="597.0" style="-fx-background-color: #333399;">
+         <children>
+            <TextField fx:id="tfHostGoals" layoutX="233.0" layoutY="167.0" prefHeight="31.0" prefWidth="31.0" />
+            <TextField fx:id="tfGuestGoals" layoutX="305.0" layoutY="167.0" prefHeight="31.0" prefWidth="31.0" />
+            <Button fx:id="addResult" layoutX="246.0" layoutY="270.0" mnemonicParsing="false" onAction="#addResult" text="Dodaj wynik" />
+            <ComboBox fx:id="hostPlayerBox" layoutX="57.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestPlayerBox" layoutX="361.0" layoutY="106.0" prefWidth="150.0" />
+            <ComboBox fx:id="hostTeamBox" layoutX="57.0" layoutY="167.0" prefWidth="150.0" />
+            <ComboBox fx:id="guestTeamBox" layoutX="361.0" layoutY="167.0" prefWidth="150.0" />
+            <Label layoutX="175.0" layoutY="4.0" prefHeight="66.0" prefWidth="271.0" text="Dodaj wynik meczu!" textFill="#f2ff00">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="70.0" text="Gospodarz" textFill="#bc0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="75.0" text="Gośc" textFill="#bb0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
